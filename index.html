@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calarian Connect | Modernizing Barangay Services</title>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc; /* slate-50 */
+        color: #0f172a; /* slate-900 */
+      }
+      /* Custom style for the Typed.js cursor */
+      .typed-cursor {
+        color: #3b82f6; /* blue-500 */
+        font-weight: 300;
+      }
+    </style>
+    <script>
+      // Configuration for Tailwind CSS
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="antialiased">
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg shadow-sm">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a
+            class="text-xl font-bold text-slate-800 flex items-center gap-2"
+            href="#"
+          >
+            <img
+              src="barangay_calarian_official_seal.png"
+              alt="Barangay Calarian Seal"
+              class="w-10 h-10 object-contain"
+            />
+            Calarian Connect
+          </a>
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="#impact"
+              class="text-slate-600 hover:text-blue-600 font-medium"
+              >The Impact</a
+            >
+            <a
+              href="#platforms"
+              class="text-slate-600 hover:text-blue-600 font-medium"
+              >Platforms</a
+            >
+            <a
+              href="#security"
+              class="text-slate-600 hover:text-blue-600 font-medium"
+              >Security</a
+            >
+            <a
+              href="#team"
+              class="text-slate-600 hover:text-blue-600 font-medium"
+              >Team</a
+            >
+          </div>
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button
+              id="menu-button"
+              class="text-slate-600 hover:text-blue-600 focus:outline-none"
+            >
+              <i class="fa-solid fa-bars fa-lg"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+          <a
+            href="#impact"
+            class="block px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-md"
+            >The Impact</a
+          >
+          <a
+            href="#platforms"
+            class="block px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-md"
+            >Platforms</a
+          >
+          <a
+            href="#security"
+            class="block px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-md"
+            >Security</a
+          >
+          <a
+            href="#team"
+            class="block px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-md"
+            >Team</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Section 1: Hero -->
+    <section id="home" class="bg-slate-50">
+      <div class="container mx-auto px-6 pt-16 pb-24 md:pt-20 md:pb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:items-start">
+          <div data-aos="fade-right" class="lg:mt-16">
+            <span
+              class="inline-block bg-blue-100 text-blue-700 font-semibold px-4 py-1 rounded-full mb-4"
+              >Barangay System 2.0</span
+            >
+            <h1
+              class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-6"
+            >
+              Barangay Services, Modernized.
+            </h1>
+            <p class="text-lg text-slate-600 mb-8 h-24 md:h-16">
+              <span id="typed-subtitle"></span>
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="#impact"
+                class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-full text-center shadow-lg hover:bg-blue-700 transition-colors"
+                >See How It Works</a
+              >
+              <a
+                href="#platforms"
+                class="bg-white text-slate-700 font-semibold py-3 px-8 rounded-full text-center shadow-lg hover:bg-slate-200 transition-colors border border-slate-200"
+                >View Tech Stack</a
+              >
+            </div>
+          </div>
+          <div
+            data-aos="fade-left"
+            data-aos-delay="200"
+            class="flex justify-center"
+          >
+            <div
+              class="bg-white p-3 rounded-[2rem] shadow-2xl shadow-slate-300/60 max-w-sm border-8 border-slate-100"
+            >
+              <img
+                src="mobile_app.png"
+                alt="Calarian Connect Citizen App Preview"
+                class="rounded-2xl w-full object-cover"
+              />
+              <p class="text-center text-sm text-slate-500 mt-4 mb-2">
+                <em>The Citizen App Interface</em>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Before & After -->
+    <section id="impact" class="bg-white py-20 md:py-24">
+      <div class="container mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
+          <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">
+            The Everyday Impact
+          </h2>
+          <p class="mt-4 text-lg text-slate-600">
+            Transforming hours of waiting into minutes of processing.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div
+            class="bg-rose-50 border border-rose-200 rounded-xl p-8"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <h3
+              class="text-2xl font-bold text-rose-700 mb-4 flex items-center gap-3"
+            >
+              <i class="fa-solid fa-times-circle"></i>The Old Way
+            </h3>
+            <ul class="space-y-3 text-slate-700">
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-minus text-rose-500 mt-1.5"></i
+                ><span
+                  >Citizens wait 5-10 minutes just for manual record
+                  lookups.</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-minus text-rose-500 mt-1.5"></i
+                ><span
+                  >Forms are filled by hand and physical logbooks are
+                  used.</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-minus text-rose-500 mt-1.5"></i
+                ><span>Paper requests get lost with no status visibility.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-minus text-rose-500 mt-1.5"></i
+                ><span
+                  >Hours of queuing for simple certificates and
+                  clearances.</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-emerald-50 border border-emerald-200 rounded-xl p-8"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <h3
+              class="text-2xl font-bold text-emerald-700 mb-4 flex items-center gap-3"
+            >
+              <i class="fa-solid fa-check-circle"></i>The Calarian Way
+            </h3>
+            <ul class="space-y-3 text-slate-700">
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-check text-emerald-500 mt-1.5"></i
+                ><span
+                  >Walk-ins are identified in 2-3 seconds via Face ID.</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-check text-emerald-500 mt-1.5"></i
+                ><span
+                  >Documents are auto-generated to PDF and printed
+                  instantly.</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-check text-emerald-500 mt-1.5"></i
+                ><span
+                  >Citizens get live push notifications on their phone.</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-check text-emerald-500 mt-1.5"></i
+                ><span
+                  >Requests submitted from home take minutes to process.</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: The 3 Platforms -->
+    <section id="platforms" class="bg-slate-50 py-20 md:py-24">
+      <div class="container mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
+          <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">
+            Three Platforms. One System.
+          </h2>
+          <p class="mt-4 text-lg text-slate-600">
+            A fully connected ecosystem serving both the citizens and the
+            barangay staff.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Mobile App -->
+          <div
+            class="bg-white rounded-xl shadow-lg p-8 flex flex-col h-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div
+              class="w-16 h-16 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mb-6"
+            >
+              <i class="fa-solid fa-mobile-screen fa-2x"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-800 mb-3">
+              The Citizen App
+            </h3>
+            <p class="text-slate-600 mb-6 flex-grow">
+              <strong>Can't type? Just speak.</strong> Residents can request
+              documents by talking naturally in Chavacano, Tagalog, Bisaya, or
+              English. The AI fills the form automatically.
+            </p>
+            <div class="border-t border-slate-200 pt-4">
+              <h4
+                class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3"
+              >
+                ⚙️ Under the Hood
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full"
+                  >React Native (Expo)</span
+                >
+                <span
+                  class="bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full"
+                  >OpenAI Whisper</span
+                >
+                <span
+                  class="bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full"
+                  >Anthropic Claude</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Web Admin -->
+          <div
+            class="bg-white rounded-xl shadow-lg p-8 flex flex-col h-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div
+              class="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-6"
+            >
+              <i class="fa-solid fa-laptop fa-2x"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-800 mb-3">
+              Staff Web Panel
+            </h3>
+            <p class="text-slate-600 mb-6 flex-grow">
+              A live dashboard for staff. When a resident requests a document,
+              it pops up instantly. Click 'Approve', and the PDF is
+              automatically generated and ready to print.
+            </p>
+            <div class="border-t border-slate-200 pt-4">
+              <h4
+                class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3"
+              >
+                ⚙️ Under the Hood
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full"
+                  >Next.js 14</span
+                >
+                <span
+                  class="bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full"
+                  >Supabase Realtime</span
+                >
+                <span
+                  class="bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full"
+                  >WebSockets</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Kiosk -->
+          <div
+            class="bg-white rounded-xl shadow-lg p-8 flex flex-col h-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div
+              class="w-16 h-16 rounded-2xl bg-violet-100 text-violet-600 flex items-center justify-center mb-6"
+            >
+              <i class="fa-solid fa-camera-retro fa-2x"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-800 mb-3">
+              Face ID Kiosk
+            </h3>
+            <p class="text-slate-600 mb-6 flex-grow">
+              Walk-ins are identified in 2-3 seconds just by looking at a screen
+              at the entrance. Powered by Infrared + Depth sensors to prevent
+              photo spoofing. No ID card needed.
+            </p>
+            <div class="border-t border-slate-200 pt-4">
+              <h4
+                class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3"
+              >
+                ⚙️ Under the Hood
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full"
+                  >Python + Electron</span
+                >
+                <span
+                  class="bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full"
+                  >ArcFace API</span
+                >
+                <span
+                  class="bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full"
+                  >Intel RealSense</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Privacy & Analytics -->
+    <section id="security" class="bg-slate-900 text-white py-20 md:py-24">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div data-aos="fade-right">
+            <div class="flex items-center gap-4 mb-4">
+              <i class="fa-solid fa-shield-halved fa-3x text-emerald-400"></i>
+              <h2 class="text-3xl md:text-4xl font-extrabold">
+                Bank-Grade Privacy
+              </h2>
+            </div>
+            <p class="text-lg text-slate-300 mb-6">
+              Your data is safe. We don't save pictures of your face, and only
+              authorized staff can update your records.
+            </p>
+            <div
+              class="inline-flex items-center gap-2 bg-slate-700 text-slate-200 font-semibold px-4 py-2 rounded-full mb-4"
+            >
+              <i class="fa-solid fa-code"></i>
+              <span>Tech Detail</span>
+            </div>
+            <p class="text-slate-400">
+              Compliant with the Data Privacy Act (RA 10173). Faces are stored
+              as 512-dimension mathematical vectors in PostgreSQL (<code
+                class="bg-slate-700 text-xs p-1 rounded"
+                >pgvector</code
+              >), making reverse-engineering a photo impossible. Database-level
+              Row Level Security (RLS) ensures citizens only see their own data.
+            </p>
+          </div>
+          <div data-aos="fade-left" data-aos-delay="100">
+            <div class="bg-slate-800 p-8 rounded-xl shadow-lg">
+              <h3 class="text-2xl font-bold mb-4 flex items-center gap-3">
+                <i class="fa-solid fa-chart-pie text-blue-400"></i> Smart
+                Analytics
+              </h3>
+              <p class="text-slate-400 mb-4">
+                Helping the Barangay Captain make data-driven decisions:
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-center gap-3">
+                  <i
+                    class="fa-solid fa-clock text-yellow-400 w-5 text-center"
+                  ></i>
+                  Track peak hours and traffic
+                </li>
+                <li class="flex items-center gap-3">
+                  <i
+                    class="fa-solid fa-file-lines text-sky-400 w-5 text-center"
+                  ></i>
+                  Most requested documents
+                </li>
+                <li class="flex items-center gap-3">
+                  <i
+                    class="fa-solid fa-stopwatch text-rose-400 w-5 text-center"
+                  ></i>
+                  Average processing times
+                </li>
+              </ul>
+              <div
+                class="mt-8 rounded-lg overflow-hidden border border-slate-700 shadow-2xl"
+              >
+                <img
+                  src="staff web panel.png"
+                  alt="Staff Web Panel Dashboard"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Team & Footer -->
+    <footer id="team" class="bg-white py-16 text-center">
+      <div class="container mx-auto px-6" data-aos="zoom-in">
+        <div class="max-w-4xl mx-auto">
+          <i class="fa-solid fa-users fa-3x text-blue-600 mb-4"></i>
+          <h3 class="text-2xl font-bold text-slate-800">
+            The Team Behind The Code
+          </h3>
+          <p class="text-slate-600 mt-3 mb-10">
+            Built for Barangay Calarian and beyond by a dedicated team working
+            across Web, Mobile, Hardware, and AI.
+          </p>
+
+          <!-- Team Members -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-8 text-center">
+            <!-- Lead -->
+            <div class="md:col-span-5 mb-2">
+              <h4
+                class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2"
+              >
+                Lead Developer
+              </h4>
+              <p class="text-xl font-bold text-blue-600">
+                John Kent Adlawan Evangelista
+              </p>
+            </div>
+
+            <!-- Interns -->
+            <div class="md:col-span-5">
+              <h4
+                class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4"
+              >
+                Development Interns
+              </h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div
+                  class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <p class="font-semibold text-slate-700">Abdel-Aziz Tebbeng</p>
+                </div>
+                <div
+                  class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <p class="font-semibold text-slate-700">Kendrick Serrano</p>
+                </div>
+                <div
+                  class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <p class="font-semibold text-slate-700">Nur-Ali Anupol</p>
+                </div>
+                <div
+                  class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <p class="font-semibold text-slate-700">Clifford Magno</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="my-8 border-slate-200" />
+        <p class="text-slate-500 text-sm">
+          &copy; 2024 Calarian Connect. Built to serve.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Typed.js for typing animation -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS animations
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 50,
+      });
+
+      // Mobile Menu Toggle
+      const menuButton = document.getElementById("menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      menuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Typed.js Hero Subtitle
+      new Typed("#typed-subtitle", {
+        strings: [
+          "No more paper queues. No more waiting.",
+          "A complete digital system for your barangay.",
+          "Bringing services to your phone and automating the rest.",
+        ],
+        typeSpeed: 40,
+        backSpeed: 20,
+        backDelay: 2000,
+        startDelay: 500,
+        loop: true,
+        smartBackspace: true,
+      });
+    </script>
+  </body>
+</html>
