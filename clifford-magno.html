@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clifford Magno — Barangay Connect</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0f172a;
+      --navy-2:  #1e293b;
+      --navy-3:  #334155;
+      --slate:   #64748b;
+      --muted:   #94a3b8;
+      --border:  #e2e8f0;
+      --bg:      #f8fafc;
+      --white:   #ffffff;
+      --blue:    #3b82f6;
+      --blue-d:  #2563eb;
+      --indigo:  #6366f1;
+      --green:   #22c55e;
+      --amber:   #f59e0b;
+      --radius:  12px;
+      --shadow:  0 4px 24px rgba(15,23,42,.08);
+      --shadow-lg: 0 8px 40px rgba(15,23,42,.12);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg);
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15,23,42,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand { color: #fff; font-weight: 700; font-size: .95rem; letter-spacing: -.01em; }
+    .nav-brand span { color: var(--blue); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); font-size: .85rem; text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #1a1040 50%, #0c1a3d 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 6rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 40%, rgba(99,102,241,.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 70%, rgba(59,130,246,.15) 0%, transparent 60%);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.3);
+      color: #93c5fd; font-size: .78rem; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; padding: .35rem .9rem; border-radius: 99px;
+      margin-bottom: 1.5rem; position: relative;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800;
+      color: #fff; letter-spacing: -.03em; line-height: 1.1;
+      margin-bottom: .75rem; position: relative;
+    }
+    .hero h1 .accent { color: var(--blue); }
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--muted);
+      max-width: 580px; margin: 0 auto 2.5rem; position: relative;
+    }
+    .hero-stats {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      position: relative; margin-bottom: 2.5rem;
+    }
+    .stat-pill {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 99px; padding: .5rem 1.2rem;
+      color: #fff; font-size: .88rem; font-weight: 500;
+    }
+    .stat-pill strong { color: var(--blue); }
+    .scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      color: var(--slate); font-size: .78rem; letter-spacing: .05em;
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+    }
+    .scroll-arrow { animation: bounce 2s infinite; }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(6px); }
+    }
+
+    /* ── SHARED SECTION STYLES ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1080px; margin: 0 auto; }
+    .section-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: .5rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800;
+      letter-spacing: -.02em; color: var(--navy); margin-bottom: 1rem;
+    }
+    .section-desc {
+      color: var(--slate); font-size: 1rem; max-width: 620px; line-height: 1.7;
+    }
+    .section-header { margin-bottom: 3rem; }
+    .divider { width: 48px; height: 3px; background: var(--blue); border-radius: 2px; margin: .75rem 0 1rem; }
+
+    /* ── PROJECT OVERVIEW ── */
+    #overview { background: var(--white); }
+    .overview-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .overview-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+    }
+    .overview-card .icon {
+      font-size: 1.8rem; margin-bottom: .75rem;
+    }
+    .overview-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+    .overview-card p { font-size: .88rem; color: var(--slate); line-height: 1.6; }
+
+    /* ── MY ROLE ── */
+    #role { background: var(--bg); }
+    .role-box {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    }
+    @media (max-width: 640px) { .role-box { grid-template-columns: 1fr; } }
+    .role-col h3 { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); margin-bottom: .75rem; }
+    .role-item { display: flex; align-items: flex-start; gap: .6rem; margin-bottom: .6rem; }
+    .role-item .dot { width: 6px; height: 6px; background: var(--blue); border-radius: 50%; margin-top: .5rem; flex-shrink: 0; }
+    .role-item p { font-size: .9rem; color: var(--slate); }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 6px; padding: .25rem .7rem;
+      font-size: .8rem; font-weight: 500; color: var(--navy-3);
+    }
+    .tag.blue { background: #eff6ff; border-color: #bfdbfe; color: var(--blue-d); }
+
+    /* ── CONTRIBUTIONS ── */
+    #contributions { background: var(--white); }
+    .contrib-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .contrib-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+      transition: box-shadow .2s, transform .2s, border-color .2s;
+      cursor: default;
+    }
+    .contrib-card:hover {
+      box-shadow: var(--shadow-lg); transform: translateY(-3px);
+      border-color: #cbd5e1;
+    }
+    .card-header { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: .9rem; }
+    .card-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .card-icon.blue   { background: #eff6ff; }
+    .card-icon.indigo { background: #eef2ff; }
+    .card-icon.green  { background: #f0fdf4; }
+    .card-icon.amber  { background: #fffbeb; }
+    .card-icon.purple { background: #faf5ff; }
+    .card-icon.rose   { background: #fff1f2; }
+    .card-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .15rem; }
+    .card-date  { font-size: .75rem; color: var(--muted); }
+    .card-desc  { font-size: .87rem; color: var(--slate); line-height: 1.65; margin-bottom: 1rem; }
+    .card-files { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .file-chip {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 5px; padding: .15rem .55rem;
+      font-size: .72rem; font-family: 'Courier New', monospace; color: var(--navy-3);
+    }
+
+    /* ── TIMELINE ── */
+    #timeline { background: var(--bg); }
+    .timeline { position: relative; padding-left: 1.5rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 2px; background: var(--border);
+    }
+    .tl-item { position: relative; margin-bottom: 1.75rem; }
+    .tl-item::before {
+      content: ''; position: absolute; left: -1.5rem; top: 8px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--white); border: 2px solid var(--blue);
+      transform: translateX(-4px);
+    }
+    .tl-date { font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--blue); margin-bottom: .2rem; }
+    .tl-title { font-size: .95rem; font-weight: 700; color: var(--navy); margin-bottom: .25rem; }
+    .tl-desc { font-size: .85rem; color: var(--slate); line-height: 1.6; }
+
+    /* ── STATS ── */
+    #stats { background: var(--navy); }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+    .stats-card {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius); padding: 1.75rem 1.5rem; text-align: center;
+    }
+    .stats-num {
+      font-size: 2.5rem; font-weight: 800; color: var(--blue); line-height: 1;
+      margin-bottom: .4rem;
+    }
+    .stats-label { font-size: .85rem; color: var(--muted); }
+    #stats .section-title { color: #fff; }
+    #stats .section-desc { color: var(--slate); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-2); border-top: 1px solid rgba(255,255,255,.06);
+      padding: 2rem; text-align: center;
+      color: var(--slate); font-size: .82rem;
+    }
+    footer strong { color: var(--muted); }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .5s, transform .5s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── LEARNINGS ── */
+    #learnings { background: var(--white); }
+
+    .learnings-quote {
+      background: linear-gradient(135deg, #eff6ff, #eef2ff);
+      border: 1px solid #bfdbfe;
+      border-left: 4px solid var(--blue);
+      border-radius: var(--radius);
+      padding: 1.75rem 2rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    .learnings-quote::before {
+      content: '\201C';
+      position: absolute; top: -.2rem; left: 1.2rem;
+      font-size: 5rem; color: #bfdbfe; font-family: Georgia, serif;
+      line-height: 1; pointer-events: none;
+    }
+    .learnings-quote p {
+      font-size: 1.05rem; color: var(--navy-2); line-height: 1.75;
+      font-style: italic; padding-left: 1.5rem;
+    }
+
+    .before-after {
+      display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem;
+      align-items: center; margin-bottom: 2.5rem;
+    }
+    @media (max-width: 640px) {
+      .before-after { grid-template-columns: 1fr; }
+      .ba-arrow { transform: rotate(90deg); }
+    }
+    .ba-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+    }
+    .ba-card.after { border-color: #86efac; background: #f0fdf4; }
+    .ba-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; margin-bottom: .75rem;
+    }
+    .ba-label.before-lbl { color: var(--slate); }
+    .ba-label.after-lbl  { color: #16a34a; }
+    .ba-item { display: flex; align-items: flex-start; gap: .6rem; margin-bottom: .55rem; }
+    .ba-item .ba-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: .45rem; flex-shrink: 0; }
+    .ba-item .ba-dot.gray  { background: var(--muted); }
+    .ba-item .ba-dot.green { background: #22c55e; }
+    .ba-item p { font-size: .88rem; color: var(--slate); }
+    .ba-item.after-item p { color: #166534; }
+    .ba-arrow {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: var(--blue); flex-shrink: 0;
+    }
+
+    .takeaways-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .takeaway-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+      display: flex; align-items: flex-start; gap: .75rem;
+    }
+    .takeaway-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: .1rem; }
+    .takeaway-card h4 { font-size: .9rem; font-weight: 700; color: var(--navy); margin-bottom: .25rem; }
+    .takeaway-card p  { font-size: .83rem; color: var(--slate); line-height: 1.55; }
+
+    @media (max-width: 640px) {
+      .contrib-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-brand">Barangay<span>Connect</span></span>
+    <ul class="nav-links">
+      <li><a href="#overview">Project</a></li>
+      <li><a href="#role">My Role</a></li>
+      <li><a href="#contributions">Contributions</a></li>
+      <!-- <li><a href="#timeline">Timeline</a></li> -->
+      <li><a href="#stats">Stats</a></li>
+      <li><a href="#learnings">Learnings</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">📋 Internship Presentation</div>
+    <h1>Clifford Magno<br><span class="accent">Web Admin Panel</span></h1>
+    <p class="hero-sub">
+      Intern Developer — Barangay Connect Project<br>
+      Western Mindanao State University &nbsp;·&nbsp; Vintazk Company
+    </p>
+    <div class="hero-stats">
+      <div class="stat-pill"><strong>24</strong> Commits</div>
+      <div class="stat-pill"><strong>8</strong> Major Features</div>
+      <div class="stat-pill"><strong>Mar – May 2026</strong></div>
+      <div class="stat-pill">Next.js 14 &nbsp;·&nbsp; TypeScript &nbsp;·&nbsp; shadcn/ui</div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll to explore</span>
+      <span class="scroll-arrow">↓</span>
+    </div>
+  </section>
+
+  <!-- PROJECT OVERVIEW -->
+  <section id="overview">
+    <div class="section-inner reveal">
+      <div class="section-header">
+        <p class="section-label">About the Project</p>
+        <h2 class="section-title">What is Barangay Connect?</h2>
+        <div class="divider"></div>
+        <p class="section-desc">
+          Barangay Connect is a three-platform digital system that modernizes how barangay halls
+          process citizen requests, complaints, and walk-in transactions across the Philippines.
+          It targets the ~100 daily walk-in citizens who wait hours for simple services.
+        </p>
+      </div>
+      <div class="overview-grid">
+        <div class="overview-card">
+          <div class="icon">📱</div>
+          <h3>Mobile App</h3>
+          <p>Citizens request government forms digitally, track status in real time, and use voice-to-form AI in Tagalog. Built with React Native + Expo.</p>
+        </div>
+        <div class="overview-card">
+          <div class="icon">🖥️</div>
+          <h3>Web Admin Panel</h3>
+          <p>Staff process request queues, manage citizen profiles, handle walk-in transactions, file complaints, and generate PDF documents. Built with Next.js 14.</p>
+        </div>
+        <div class="overview-card">
+          <div class="icon">🎭</div>
+          <h3>Facial Recognition Kiosk</h3>
+          <p>Identifies walk-in citizens by face in 2–3 seconds using ArcFace + Intel RealSense D435i. Built with Electron + Python FastAPI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MY ROLE -->
+  <section id="role">
+    <div class="section-inner reveal">
+      <div class="section-header">
+        <p class="section-label">Assignment</p>
+        <h2 class="section-title">My Role on the Project</h2>
+        <div class="divider"></div>
+        <p class="section-desc">
+          I was assigned to the <strong>Web Admin Panel</strong> — the primary interface used by
+          barangay staff to manage everything from the request queue to citizen profiles.
+        </p>
+      </div>
+      <div class="role-box">
+        <div class="role-col">
+          <h3>Responsibilities</h3>
+          <div class="role-item"><span class="dot"></span><p>Build and maintain dashboard pages for the web admin panel</p></div>
+          <div class="role-item"><span class="dot"></span><p>Implement paginated data tables for queue, citizens, staff, and complaints</p></div>
+          <div class="role-item"><span class="dot"></span><p>Develop form management features including template previews</p></div>
+          <div class="role-item"><span class="dot"></span><p>Integrate bilingual support (English + Tagalog) across all UI strings</p></div>
+          <div class="role-item"><span class="dot"></span><p>Fix bugs reported during code review and QA cycles</p></div>
+          <div class="role-item"><span class="dot"></span><p>Maintain code quality — remove dead code, improve readability</p></div>
+        </div>
+        <div class="role-col">
+          <h3>Tech Stack Used</h3>
+          <div class="tech-tags">
+            <span class="tag blue">Next.js 14</span>
+            <span class="tag blue">TypeScript</span>
+            <span class="tag blue">Tailwind CSS</span>
+            <span class="tag blue">shadcn/ui</span>
+            <span class="tag">TanStack Query</span>
+            <span class="tag">Recharts</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">next-intl</span>
+            <span class="tag">React Hook Form</span>
+            <span class="tag">Zod</span>
+            <span class="tag">Deno Edge Functions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTRIBUTIONS -->
+  <section id="contributions">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <p class="section-label">What I Built</p>
+        <h2 class="section-title">Key Contributions</h2>
+        <div class="divider"></div>
+        <p class="section-desc">
+          A breakdown of the major features, fixes, and improvements I delivered across the project duration.
+        </p>
+      </div>
+      <div class="contrib-grid">
+
+        <div class="contrib-card reveal">
+          <div class="card-header">
+            <div class="card-icon blue">⚙️</div>
+            <div>
+              <div class="card-title">UI Framework Setup</div>
+              <div class="card-date">March 10, 2026</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Integrated shadcn/ui into the Next.js web admin panel from scratch — installed 13 component
+            primitives (Button, Card, Sidebar, Sheet, DropdownMenu, Avatar, Tooltip, and more),
+            updated Tailwind configuration, and established the design system used across all web panel pages.
+            This was the foundation every other UI contribution built upon.
+          </p>
+          <div class="card-files">
+            <span class="file-chip">components.json</span>
+            <span class="file-chip">tailwind.config.ts</span>
+            <span class="file-chip">ui/sidebar.tsx</span>
+            <span class="file-chip">ui/card.tsx</span>
+            <span class="file-chip">+9 more</span>
+          </div>
+        </div>
+
+        <div class="contrib-card reveal">
+          <div class="card-header">
+            <div class="card-icon indigo">🗂️</div>
+            <div>
+              <div class="card-title">Sidebar Refactor</div>
+              <div class="card-date">March 10, 2026</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Replaced the legacy custom sidebar with a fully shadcn-compatible collapsible sidebar component.
+            Improved layout stability, collapse behavior, and spacing consistency across the dashboard shell.
+            Applied stale role fix to ensure the sidebar correctly reflects the authenticated user's role
+            on session reload.
+          </p>
+          <div class="card-files">
+            <span class="file-chip">layout/sidebar.tsx</span>
+            <span class="file-chip">layout/providers.tsx</span>
+            <span class="file-chip">(dashboard)/layout.tsx</span>
+          </div>
+        </div>
+
+        <div class="contrib-card reveal">
+          <div class="card-header">
+            <div class="card-icon green">📄</div>
+            <div>
+              <div class="card-title">Pagination System</div>
+              <div class="card-date">March 11 – 17, 2026</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Designed and built a reusable pagination system from scratch. Created the
+            <code>PaginationController</code> component and <code>pagination.ts</code> utility library,
+            then applied them to five high-traffic pages: Citizens, Queue, Staff, Audit Log, and Complaints.
+            Added a <code>Select</code> component for per-page size control.
+          </p>
+          <div class="card-files">
+            <span class="file-chip">pagination-controller.tsx</span>
+            <span class="file-chip">lib/pagination.ts</span>
+            <span class="file-chip">queue/page.tsx</span>
+            <span class="file-chip">citizens/page.tsx</span>
+          </div>
+        </div>
+
+        <div class="contrib-card reveal">
+          <div class="card-header">
+            <div class="card-icon amber">📊</div>
+            <div>
+              <div class="card-title">Dashboard Development</div>
+              <div class="card-date">March 12 – 18, 2026</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Built and iterated on the main admin dashboard page. Developed the
+            <strong>Activity Feed</strong> component, wired up <strong>Recharts analytics charts</strong>
+            for request and complaint trends, and built the Kiosk Activity and Recent Requests feed
+            components. Added a full-page loading state and a <code>SectionErrorBoundary</code>
+            for graceful error handling.
+          </p>
+          <div class="card-files">
+            <span class="file-chip">dashboard/charts.tsx</span>
+            <span class="file-chip">dashboard/activity-feed.tsx</span>
+            <span class="file-chip">(dashboard)/page.tsx</span>
+            <span class="file-chip">loading.tsx</span>
+          </div>
+        </div>
+
+        <div class="contrib-card reveal">
+          <div class="card-header">
+            <div class="card-icon purple">🗃️</div>
+            <div>
+              <div class="card-title">Queue Page Enhancements</div>
+              <div class="card-date">March 16 – 24, 2026</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Extended the moderator request queue with pagination, <strong>moderator-scoped filtering</strong>
+            (staff see only their barangay's requests), and full bilingual translation for all UI strings.
+            Contributed to the <strong>Request Detail Panel</strong>, adding status action controls,
+            i18n coverage, and Supabase query invalidation on status updates.
+          </p>
+          <div class="card-files">
+            <span class="file-chip">queue/page.tsx</span>
+            <span class="file-chip">queue/request-detail-panel.tsx</span>
+            <span class="file-chip">messages/en.json</span>
+            <span class="file-chip">messages/tl.json</span>
+          </div>
+        </div>
+
+        <div class="contrib-card reveal">
+          <div class="card-header">
+            <div class="card-icon rose">📋</div>
+            <div>
+              <div class="card-title">Form Types Management</div>
+              <div class="card-date">March 24 – 25, 2026</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Developed the <strong>Form Templates</strong> management section — the full CRUD interface for
+            creating and listing government form types. Introduced a
+            <strong>template explanation/preview feature</strong> with before/after visual comparisons.
+            Created three new shared UI components: <code>Checkbox</code>, <code>Textarea</code>,
+            and a generic <code>Field</code>. Also contributed to the <code>generate-pdf</code>
+            Supabase Edge Function integration.
+          </p>
+          <div class="card-files">
+            <span class="file-chip">forms/page.tsx</span>
+            <span class="file-chip">ui/field.tsx</span>
+            <span class="file-chip">ui/textarea.tsx</span>
+            <span class="file-chip">generate-pdf/index.ts</span>
+          </div>
+        </div>
+
+        <div class="contrib-card reveal">
+          <div class="card-header">
+            <div class="card-icon green">🚶</div>
+            <div>
+              <div class="card-title">Walk-In Transaction Page</div>
+              <div class="card-date">April 21, 2026</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Developed the <strong>Walk-In Page</strong> — the interface moderators use to process
+            citizens who arrive at the barangay hall in person. Handles walk-in request creation,
+            citizen lookup, and form submission on behalf of the citizen. Subsequently optimized the
+            page's data flow and component layout for performance.
+          </p>
+          <div class="card-files">
+            <span class="file-chip">walk-in/page.tsx</span>
+          </div>
+        </div>
+
+        <div class="contrib-card reveal">
+          <div class="card-header">
+            <div class="card-icon indigo">🌐</div>
+            <div>
+              <div class="card-title">Internationalization (i18n)</div>
+              <div class="card-date">March 16 – April 23, 2026</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Maintained bilingual (English + Tagalog) support throughout the web panel using
+            <code>next-intl</code>. Added and corrected translation keys across
+            <code>en.json</code> and <code>tl.json</code>. Fixed hardcoded strings on the
+            Complaints, Staff, and Walk-In pages that were missing <code>t()</code> calls.
+            Corrected English key values that were mistakenly written in Tagalog.
+          </p>
+          <div class="card-files">
+            <span class="file-chip">messages/en.json</span>
+            <span class="file-chip">messages/tl.json</span>
+            <span class="file-chip">complaints/page.tsx</span>
+            <span class="file-chip">staff/page.tsx</span>
+          </div>
+        </div>
+
+        <div class="contrib-card reveal">
+          <div class="card-header">
+            <div class="card-icon amber">🔧</div>
+            <div>
+              <div class="card-title">Bug Fixes & Code Quality</div>
+              <div class="card-date">March 19 – May 6, 2026</div>
+            </div>
+          </div>
+          <p class="card-desc">
+            Applied code review fixes including stale role session resolution, Suspense boundary
+            additions, TanStack Query cache invalidation corrections, and audit log wiring.
+            Fixed a moderator queue filter bug, a Recharts rendering bug on the dashboard,
+            and removed unnecessary comments and dead code across multiple pages.
+          </p>
+          <div class="card-files">
+            <span class="file-chip">layout/providers.tsx</span>
+            <span class="file-chip">dashboard/charts.tsx</span>
+            <span class="file-chip">section-error-boundary.tsx</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <!-- <section id="timeline">
+    <div class="section-inner reveal">
+      <div class="section-header">
+        <p class="section-label">Chronology</p>
+        <h2 class="section-title">Commit Timeline</h2>
+        <div class="divider"></div>
+        <p class="section-desc">A chronological view of key commits and milestones across the internship period.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-date">March 10, 2026</div>
+          <div class="tl-title">shadcn/ui Integration + Sidebar Refactor</div>
+          <div class="tl-desc">Bootstrapped the UI component library (27 files, ~3,574 insertions). Replaced the legacy sidebar with a shadcn-compatible collapsible sidebar.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">March 11, 2026</div>
+          <div class="tl-title">Pagination System — First Implementation</div>
+          <div class="tl-desc">Built <code>PaginationController</code> and applied it to the Citizens page. Added the <code>Select</code> UI component for page-size control.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">March 12, 2026</div>
+          <div class="tl-title">Dashboard, Settings & Citizens Pages</div>
+          <div class="tl-desc">Completed the main dashboard page layout, settings page, citizens detail view, and staff management page. Added shared types to <code>packages/shared</code>.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">March 16 – 17, 2026</div>
+          <div class="tl-title">Pagination Rollout + Queue, Audit, Complaints</div>
+          <div class="tl-desc">Rolled out pagination to the Queue, Staff, Audit, and Complaints pages. Built the <code>pagination.ts</code> utility and the pagination library. Applied i18n strings to the queue page.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">March 18, 2026</div>
+          <div class="tl-title">Activity Feed + Request Detail Panel</div>
+          <div class="tl-desc">Developed the Activity Feed dashboard component and substantially expanded the Request Detail Panel with status actions and Supabase integration.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">March 19, 2026</div>
+          <div class="tl-title">Code Review Fixes</div>
+          <div class="tl-desc">Applied fixes from lead developer code review: audit log wiring, Suspense boundaries, TanStack Query invalidation, i18n string corrections, and loading/error state handling.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">March 23, 2026</div>
+          <div class="tl-title">Stale Role Fix + Moderator Queue Filter</div>
+          <div class="tl-desc">Fixed a stale role session bug in the auth provider. Added moderator-scoped queue filtering so staff see only their barangay's requests.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">March 24 – 25, 2026</div>
+          <div class="tl-title">Form Types Management + Template Preview Feature</div>
+          <div class="tl-desc">Built the form CRUD interface, template explanation/preview modal, three new UI components (Field, Checkbox, Textarea), and PDF generation integration.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">March 26, 2026</div>
+          <div class="tl-title">Charts Bug Fix</div>
+          <div class="tl-desc">Diagnosed and fixed a Recharts rendering bug on the dashboard that caused charts to fail when data was unavailable or partially loaded.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">April 14, 2026</div>
+          <div class="tl-title">i18n Correction — English Keys</div>
+          <div class="tl-desc">Corrected translation key values in <code>en.json</code> that were mistakenly written in Tagalog instead of English.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">April 21, 2026</div>
+          <div class="tl-title">Walk-In Page + Optimization</div>
+          <div class="tl-desc">Developed the Walk-In Transaction page used by moderators to process in-person citizen visits. Followed up with a data flow and layout optimization pass.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">April 23, 2026</div>
+          <div class="tl-title">Hardcoded String Fixes</div>
+          <div class="tl-desc">Replaced hardcoded UI strings on the Complaints, Staff, and Walk-In pages with proper <code>t()</code> i18n calls. Updated both <code>en.json</code> and <code>tl.json</code>.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">May 6, 2026</div>
+          <div class="tl-title">Code Cleanup — Removed Unnecessary Comments</div>
+          <div class="tl-desc">Final cleanup pass across citizens, forms, charts, and pagination components, removing outdated comments and dead code.</div>
+        </div>
+
+      </div>
+    </div>
+  </section> -->
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="section-inner reveal">
+      <div class="section-header">
+        <p class="section-label" style="color:#60a5fa;">By the Numbers</p>
+        <h2 class="section-title">Contribution Summary</h2>
+        <div class="divider"></div>
+        <p class="section-desc">A snapshot of the overall scope of work delivered during the internship.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stats-card">
+          <div class="stats-num">24</div>
+          <div class="stats-label">Git Commits</div>
+        </div>
+        <div class="stats-card">
+          <div class="stats-num">8</div>
+          <div class="stats-label">Major Features Delivered</div>
+        </div>
+        <div class="stats-card">
+          <div class="stats-num">40+</div>
+          <div class="stats-label">Files Modified</div>
+        </div>
+        <div class="stats-card">
+          <div class="stats-num">5</div>
+          <div class="stats-label">Paginated Data Tables</div>
+        </div>
+        <div class="stats-card">
+          <div class="stats-num">2</div>
+          <div class="stats-label">Languages Supported</div>
+        </div>
+        <div class="stats-card">
+          <div class="stats-num">2mo</div>
+          <div class="stats-label">Duration (Mar – May 2026)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARNINGS -->
+  <section id="learnings">
+    <div class="section-inner reveal">
+      <div class="section-header">
+        <p class="section-label">Personal Growth</p>
+        <h2 class="section-title">What I Learned</h2>
+        <div class="divider"></div>
+        <p class="section-desc">
+          Beyond the technical deliverables, this internship represented a significant personal
+          and professional turning point.
+        </p>
+      </div>
+
+      <div class="learnings-quote">
+        <p>
+          Before this project, I was a dedicated Java backend developer — Spring Boot was my comfort zone.
+          I had never touched frontend or UI development. When I was assigned to the Web Admin Panel,
+          I was genuinely hesitant about whether I could deliver. As the weeks went on and the tasks kept
+          coming, something shifted. Each feature I shipped gave me a bit more confidence. By the end,
+          I was no longer someone who "only does backend." I can now build frontend interfaces with
+          confidence — especially using React.js.
+        </p>
+      </div>
+
+      <div class="before-after">
+        <div class="ba-card">
+          <div class="ba-label before-lbl">Before the Internship</div>
+          <div class="ba-item">
+            <span class="ba-dot gray"></span>
+            <p>Dedicated Java backend developer</p>
+          </div>
+          <div class="ba-item">
+            <span class="ba-dot gray"></span>
+            <p>Primary framework: Spring Boot</p>
+          </div>
+          <div class="ba-item">
+            <span class="ba-dot gray"></span>
+            <p>No experience in frontend or UI development</p>
+          </div>
+          <div class="ba-item">
+            <span class="ba-dot gray"></span>
+            <p>Hesitant about being assigned to a Next.js project</p>
+          </div>
+          <div class="ba-item">
+            <span class="ba-dot gray"></span>
+            <p>Uncertain whether I could perform in the role</p>
+          </div>
+        </div>
+
+        <div class="ba-arrow">→</div>
+
+        <div class="ba-card after">
+          <div class="ba-label after-lbl">After the Internship</div>
+          <div class="ba-item after-item">
+            <span class="ba-dot green"></span>
+            <p>Capable full-stack developer (backend + frontend)</p>
+          </div>
+          <div class="ba-item after-item">
+            <span class="ba-dot green"></span>
+            <p>Proficient in React.js and the Next.js ecosystem</p>
+          </div>
+          <div class="ba-item after-item">
+            <span class="ba-dot green"></span>
+            <p>Comfortable with component-driven UI architecture</p>
+          </div>
+          <div class="ba-item after-item">
+            <span class="ba-dot green"></span>
+            <p>Confident taking on frontend tasks independently</p>
+          </div>
+          <div class="ba-item after-item">
+            <span class="ba-dot green"></span>
+            <p>Grew with every task — hesitation turned into ownership</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="takeaways-grid">
+        <div class="takeaway-card">
+          <span class="takeaway-icon">⚛️</span>
+          <div>
+            <h4>React.js Fundamentals</h4>
+            <p>Learned component architecture, hooks, state management, and data fetching patterns through real production code.</p>
+          </div>
+        </div>
+        <div class="takeaway-card">
+          <span class="takeaway-icon">🎨</span>
+          <div>
+            <h4>UI & Design Systems</h4>
+            <p>Gained hands-on experience with Tailwind CSS, shadcn/ui, and how to build consistent, accessible interfaces from a component library.</p>
+          </div>
+        </div>
+        <div class="takeaway-card">
+          <span class="takeaway-icon">🔄</span>
+          <div>
+            <h4>Full-Stack Thinking</h4>
+            <p>Bridged the gap between backend logic and the UI layer — connecting Supabase queries, Edge Functions, and React components end to end.</p>
+          </div>
+        </div>
+        <div class="takeaway-card">
+          <span class="takeaway-icon">💪</span>
+          <div>
+            <h4>Confidence Through Delivery</h4>
+            <p>The most important lesson: confidence is not built by waiting to feel ready — it is built by doing the work and seeing it ship.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>Clifford Magno</strong> &nbsp;·&nbsp; Web Admin Panel &nbsp;·&nbsp; Barangay Connect &nbsp;·&nbsp; Vintazk Company &nbsp;·&nbsp; 2026</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          // Stagger child reveals
+          e.target.querySelectorAll('.contrib-card.reveal, .tl-item').forEach((el, i) => {
+            setTimeout(() => el.classList.add('visible'), i * 80);
+          });
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
