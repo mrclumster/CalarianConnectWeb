@@ -266,6 +266,71 @@
         pointer-events: none;
       }
 
+      /* ======================== Scroll-triggered highlights ======================== */
+      mark {
+        --lightness: 85%;
+        --highlighted: 1;
+        --highlight: hsl(var(--hue, 45) 85% var(--lightness));
+        background: transparent;
+        color: inherit;
+        position: relative;
+      }
+      @supports (animation-timeline: view()) {
+        mark {
+          --highlighted: 0;
+          animation: highlight steps(1) both;
+          animation-timeline: view();
+          animation-range: entry 100% cover 10%;
+        }
+      }
+      mark span {
+        background: linear-gradient(
+            120deg,
+            var(--highlight, #fde68a) 50%,
+            transparent 50%
+          )
+          110% 0 / 200% 100% no-repeat;
+        background-position: calc((1 - var(--highlighted)) * 110%) 0;
+        transition: background-position 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+        padding: 0.05em 0.18em;
+        border-radius: 3px;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+      }
+      mark::after {
+        content: attr(data-author);
+        display: grid;
+        place-items: center;
+        font-variant-numeric: tabular-nums;
+        font-weight: 600;
+        position: absolute;
+        width: 30px;
+        aspect-ratio: 1;
+        border-radius: 9px;
+        background: var(--highlight);
+        color: #0f172a;
+        top: 50%;
+        left: 100%;
+        translate: 10px -50%;
+        font-size: 0.68rem;
+        font-family: "JetBrains Mono", monospace;
+        letter-spacing: 0.04em;
+        scale: var(--highlighted);
+        transition: scale 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 4px 10px -4px rgba(15, 23, 42, 0.25);
+        z-index: 1;
+      }
+      @keyframes highlight {
+        to { --highlighted: 1; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        mark span {
+          background-position: 0 0;
+          transition: none;
+        }
+        mark::after { scale: 1; }
+      }
+
       /* Print */
       @media print {
         body::before, body::after { display: none; }
@@ -307,7 +372,7 @@
           Building a barangay <em class="grad-text">in your pocket.</em>
           <span class="block font-sans font-normal text-[0.42em] sm:text-[0.5em] text-ink-mute mt-4 sm:mt-6 tracking-normal max-w-[42ch]">
             A four-week journey from a blank Expo workspace to a
-            production-ready citizen mobile app — owning the full vertical, end
+            <mark data-author="K1"><span>production-ready citizen mobile app</span></mark> — owning the full vertical, end
             to end.
           </span>
         </h1>
@@ -460,7 +525,7 @@
           </div>
           <div class="p-4 sm:p-5 border border-line bg-white rounded-xl shadow-card">
             <div class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink-mute mb-1.5">What We Built</div>
-            <div>A free mobile app citizens can install on their phone. They request the document they need from home, in either Tagalog or English, and even just by speaking — no typing required.</div>
+            <div>A free mobile app citizens can install on their phone. They request the document they need from home, in either Tagalog or English, and <mark data-author="VX" style="--hue: 280"><span>even just by speaking — no typing required</span></mark>.</div>
           </div>
           <div class="p-4 sm:p-5 border border-line bg-white rounded-xl shadow-card">
             <div class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink-mute mb-1.5">My Part</div>
@@ -628,9 +693,7 @@
               <div class="text-ink-soft text-sm sm:text-[0.95rem]">
                 <strong class="block text-ink mb-0.5">The big home-page rebuild</strong>
                 The biggest single change of this week — completely redid
-                the home page. Removed an old face-scan screen because that
-                feature belongs to the office's machine, not the citizen's
-                phone. Improved several other screens at the same time.
+                the home page. <mark data-author="JD" style="--hue: 220"><span>Removed an old face-scan screen because that feature belongs to the office's machine, not the citizen's phone.</span></mark> Improved several other screens at the same time.
               </div>
             </div>
             <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
@@ -717,10 +780,7 @@
               <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 26</div>
               <div class="text-ink-soft text-sm sm:text-[0.95rem]">
                 <strong class="block text-ink mb-0.5">Voice input — speaking instead of typing</strong>
-                Connected the microphone button to the AI service. Now when
-                a citizen taps the microphone and talks, the AI listens,
-                understands what they said in Tagalog or English, and fills
-                out the form for them.
+                Connected the microphone button to the AI service. <mark data-author="AI" style="--hue: 280"><span>Now when a citizen taps the microphone and talks, the AI listens, understands what they said in Tagalog or English, and fills out the form for them.</span></mark>
               </div>
             </div>
             <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
@@ -904,8 +964,7 @@
           <h3 class="font-serif text-xl mb-1.5">Speak Instead of Type</h3>
           <p class="text-ink-soft text-[0.92rem]">
             I added a microphone button so citizens can just talk to the app
-            instead of typing — helpful for older folks or anyone in a hurry.
-            The app listens, understands what they said in Tagalog or
+            instead of typing — <mark data-author="UX" style="--hue: 340"><span>helpful for older folks or anyone in a hurry</span></mark>. The app listens, understands what they said in Tagalog or
             English, and fills out the form for them automatically.
           </p>
           <div class="mt-4 flex flex-wrap gap-2">
@@ -1016,7 +1075,7 @@
           <div>
             <h3 class="font-serif text-lg sm:text-xl mb-1.5">Design is a feature, not a finishing touch</h3>
             <p class="text-ink-soft text-[0.95rem]">
-              The two UI sweeps weren't cosmetic — they're what made the app feel trustworthy. A citizen requesting an Indigency certificate needs to feel that the system respects them. That's a design outcome before it's an engineering one.
+              The two UI sweeps weren't cosmetic — they're what made the app feel trustworthy. <mark data-author="UI" style="--hue: 140"><span>A citizen requesting an Indigency certificate needs to feel that the system respects them.</span></mark> That's a design outcome before it's an engineering one.
             </p>
           </div>
         </div>
@@ -1038,7 +1097,7 @@
           <div>
             <h3 class="font-serif text-lg sm:text-xl mb-1.5">Accessibility starts with language</h3>
             <p class="text-ink-soft text-[0.95rem]">
-              Shipping every UI change with paired Tagalog strings forced me to think about who the user actually is. English-first is a choice that excludes most of our users — bilingual-by-default is a choice that includes them.
+              Shipping every UI change with paired Tagalog strings forced me to think about who the user actually is. <mark data-author="LG" style="--hue: 30"><span>English-first is a choice that excludes most of our users — bilingual-by-default is a choice that includes them.</span></mark>
             </p>
           </div>
         </div>
@@ -1065,7 +1124,7 @@
           <span class="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ink-mute block mb-3">Where I ended</span>
           <h4 class="font-serif text-xl sm:text-2xl mb-2">Intentional, end-to-end</h4>
           <p class="text-ink-soft text-[0.95rem]">
-            By Week 4, I was making structural calls — removing the obsolete face-enroll route, restructuring auth to match the real identity model, propagating dark mode in a single coherent pass. The commits got bigger because the thinking got tighter.
+            By Week 4, I was making structural calls — removing the obsolete face-enroll route, restructuring auth to match the real identity model, propagating dark mode in a single coherent pass. <mark data-author="GR" style="--hue: 45"><span>The commits got bigger because the thinking got tighter.</span></mark>
           </p>
         </div>
         <div class="bg-white border border-line rounded-3xl p-5 sm:p-7 shadow-card">
@@ -1176,6 +1235,27 @@
       document
         .querySelectorAll("[data-reveal]")
         .forEach((el) => io.observe(el));
+
+      // Highlight on scroll — fallback for browsers without animation-timeline
+      if (!CSS.supports("animation-timeline: view()")) {
+        const marks = document.querySelectorAll("mark");
+        const markObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.style.setProperty("--highlighted", 1);
+                // One-shot: stay highlighted, don't un-highlight on scroll up
+                markObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.6, rootMargin: "0px 0px -10% 0px" }
+        );
+        marks.forEach((m) => {
+          m.style.setProperty("--highlighted", 0);
+          markObserver.observe(m);
+        });
+      }
     </script>
   </body>
 </html>
