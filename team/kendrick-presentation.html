@@ -1,0 +1,1184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intern Journey — Kendrick · BarangayConnect Mobile</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              serif: ["Fraunces", "serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            colors: {
+              ink: {
+                DEFAULT: "#0f172a",
+                soft: "#475569",
+                mute: "#64748b",
+              },
+              paper: {
+                DEFAULT: "#ffffff",
+                tint: "#f8fafc",
+              },
+              surface: {
+                DEFAULT: "#ffffff",
+                2: "#f1f5f9",
+              },
+              line: {
+                DEFAULT: "#e2e8f0",
+                strong: "#cbd5e1",
+              },
+              accent: {
+                amber: "#d97706",
+                green: "#059669",
+                blue: "#2563eb",
+                coral: "#dc2626",
+              },
+            },
+            fontSize: {
+              hero: ["clamp(2.4rem, 1.2rem + 6vw, 6.5rem)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],
+              display: ["clamp(2rem, 1rem + 4vw, 4.5rem)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],
+              h1: ["clamp(1.7rem, 1rem + 2.4vw, 2.85rem)", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
+              h2: ["clamp(1.25rem, 0.9rem + 1.2vw, 1.85rem)", { lineHeight: "1.2", letterSpacing: "-0.015em" }],
+            },
+            boxShadow: {
+              "phone": "0 1px 0 rgba(255,255,255,0.08) inset, 0 0 0 1px rgba(15,23,42,0.06), 0 30px 60px -20px rgba(15,23,42,0.25), 0 60px 120px -30px rgba(217,119,6,0.18)",
+              "mini-phone": "0 0 0 1px rgba(15,23,42,0.06), 0 24px 50px -16px rgba(15,23,42,0.2)",
+              "tag": "0 14px 30px -14px rgba(15,23,42,0.18)",
+              "card": "0 1px 2px rgba(15,23,42,0.04), 0 8px 24px -12px rgba(15,23,42,0.1)",
+              "card-hover": "0 4px 8px rgba(15,23,42,0.06), 0 16px 40px -16px rgba(15,23,42,0.18)",
+            },
+            keyframes: {
+              pulse: {
+                "0%": { boxShadow: "0 0 0 0 rgba(132,204,146,0.55)" },
+                "100%": { boxShadow: "0 0 0 14px rgba(132,204,146,0)" },
+              },
+              bob: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(4px)" },
+              },
+            },
+            animation: {
+              "pulse-ring": "pulse 2.2s cubic-bezier(0.16,1,0.3,1) infinite",
+              "bob": "bob 2.4s cubic-bezier(0.16,1,0.3,1) infinite",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        background: #f8fafc;
+        color: #0f172a;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      /* Ambient glow — soft, paper-like */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          radial-gradient(1200px 600px at 80% -10%, rgba(217,119,6,0.06), transparent 60%),
+          radial-gradient(900px 500px at -10% 30%, rgba(37,99,235,0.05), transparent 60%),
+          radial-gradient(800px 600px at 50% 110%, rgba(5,150,105,0.04), transparent 60%);
+        pointer-events: none;
+        z-index: 0;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        opacity: 0.5;
+        mix-blend-mode: multiply;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* Gradient text utility */
+      .grad-text {
+        background: linear-gradient(135deg, #d97706 0%, #dc2626 60%, #be185d 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+
+      /* Section label dash */
+      .section-label::before {
+        content: "";
+        display: inline-block;
+        width: 28px;
+        height: 1px;
+        background: #94a3b8;
+        margin-right: 0.6rem;
+        vertical-align: middle;
+      }
+
+      /* Animated underline for nav links */
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #1c1410;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .nav-link:hover::after {
+        transform: scaleX(1);
+      }
+
+      /* Hero title elements */
+      .hero-title em {
+        font-style: italic;
+        font-family: "Fraunces", serif;
+      }
+
+      /* Reveal on scroll */
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
+          transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      [data-reveal].in {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        [data-reveal] {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .animate-pulse-ring,
+        .animate-bob {
+          animation: none !important;
+        }
+      }
+
+      /* Phone mockup glow */
+      .phone-glow::before {
+        content: "";
+        position: absolute;
+        inset: 10% 5%;
+        background: linear-gradient(135deg, #fbbf24 0%, #f87171 60%, #ec4899 100%);
+        filter: blur(80px);
+        opacity: 0.22;
+        border-radius: 50%;
+        z-index: 0;
+      }
+      .phone-glow::after {
+        content: "";
+        position: absolute;
+        inset: -10%;
+        background: radial-gradient(closest-side, rgba(37,99,235,0.12), transparent 70%);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      /* Phone screen reflection */
+      .phone-reflect {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.18) 0%,
+          rgba(255, 255, 255, 0) 25%,
+          rgba(255, 255, 255, 0) 75%,
+          rgba(255, 255, 255, 0.06) 100%
+        );
+      }
+
+      /* Big quote mark */
+      .quote-mark::before {
+        content: "\201C";
+        position: absolute;
+        top: -40px;
+        left: 30px;
+        font-family: "Fraunces", serif;
+        font-size: 14rem;
+        color: rgba(217, 119, 6, 0.15);
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      /* Week card accent bar */
+      .week-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(135deg, #d97706 0%, #dc2626 60%, #be185d 100%);
+        opacity: 0.85;
+      }
+
+      /* Brief radial accent */
+      .brief-card::after {
+        content: "";
+        position: absolute;
+        right: -120px;
+        top: -120px;
+        width: 360px;
+        height: 360px;
+        background: linear-gradient(135deg, #2563eb 0%, #059669 100%);
+        filter: blur(80px);
+        opacity: 0.1;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      /* Stat card top-left glow */
+      .stat-card-bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(400px 200px at 0% 0%, rgba(217,119,6,0.07), transparent 60%);
+        pointer-events: none;
+      }
+
+      /* Print */
+      @media print {
+        body::before, body::after { display: none; }
+        body { background: white; color: #0f172a; }
+        nav.site-nav, .hero-foot { display: none; }
+        section { padding: 1.5rem 0; break-inside: avoid; }
+      }
+    </style>
+  </head>
+
+  <body class="relative">
+    <!-- ============== NAV ============== -->
+    <nav class="site-nav fixed top-0 inset-x-0 z-50 flex items-center justify-between gap-4 px-5 sm:px-8 lg:px-12 py-3 sm:py-4 backdrop-blur-xl bg-paper/80 border-b border-line">
+      <div class="font-serif text-base sm:text-lg tracking-wide flex items-center gap-2.5">
+        <a href="../index.html" class="flex items-center gap-2 text-ink-soft hover:text-ink transition-colors group">
+          <i class="fa-solid fa-arrow-left text-xs transition-transform group-hover:-translate-x-0.5"></i>
+          <span class="w-2 h-2 rounded-full bg-accent-amber shadow-[0_0_14px_#ffd166]"></span>
+          <span>Back to Home</span>
+        </a>
+      </div>
+      <div class="hidden lg:flex items-center gap-7 text-sm text-ink-soft">
+        <a href="#overview" class="nav-link hover:text-ink">Overview</a>
+        <a href="#project" class="nav-link hover:text-ink">Project</a>
+        <a href="#timeline" class="nav-link hover:text-ink">Timeline</a>
+        <a href="#skills" class="nav-link hover:text-ink">Skills</a>
+        <a href="#learnings" class="nav-link hover:text-ink">Learnings</a>
+        <a href="#reflection" class="nav-link hover:text-ink">Reflection</a>
+        <a href="#about" class="nav-link hover:text-ink">About</a>
+      </div>
+      <div class="hidden sm:block font-mono text-[0.7rem] uppercase tracking-[0.16em] text-ink-mute">
+        Panel · 2026
+      </div>
+    </nav>
+
+    <!-- ============== HERO ============== -->
+    <header
+      class="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-10 pt-28 sm:pt-32 pb-16 lg:pb-20 min-h-[100svh] grid items-center gap-10 lg:gap-16 lg:grid-cols-[1.35fr,1fr]"
+      data-reveal
+    >
+      <div class="relative order-2 lg:order-1">
+        <h1 class="hero-title font-serif font-normal text-hero">
+          Building a barangay <em class="grad-text">in your pocket.</em>
+          <span class="block font-sans font-normal text-[0.42em] sm:text-[0.5em] text-ink-mute mt-4 sm:mt-6 tracking-normal max-w-[42ch]">
+            A four-week journey from a blank Expo workspace to a
+            production-ready citizen mobile app — owning the full vertical, end
+            to end.
+          </span>
+        </h1>
+
+        <div class="mt-10 sm:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-6 sm:gap-x-8 lg:gap-x-6 border-t border-line pt-7 sm:pt-8">
+          <div class="min-w-0">
+            <span class="block font-mono text-[0.65rem] sm:text-[0.7rem] uppercase tracking-[0.16em] text-ink-mute mb-1.5">Trainee</span>
+            <span class="font-serif text-lg sm:text-xl break-words">Kendrick</span>
+          </div>
+          <div class="min-w-0">
+            <span class="block font-mono text-[0.65rem] sm:text-[0.7rem] uppercase tracking-[0.16em] text-ink-mute mb-1.5">Role</span>
+            <span class="font-serif text-lg sm:text-xl break-words">Mobile Developer</span>
+          </div>
+          <div class="min-w-0">
+            <span class="block font-mono text-[0.65rem] sm:text-[0.7rem] uppercase tracking-[0.16em] text-ink-mute mb-1.5">Project</span>
+            <span class="font-serif text-lg sm:text-xl break-words">Barangay Connect</span>
+          </div>
+          <div class="min-w-0">
+            <span class="block font-mono text-[0.65rem] sm:text-[0.7rem] uppercase tracking-[0.16em] text-ink-mute mb-1.5">Duration</span>
+            <span class="font-serif text-lg sm:text-xl whitespace-nowrap">Mar 9 — Apr 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone Mockup -->
+      <div class="phone-glow relative grid place-items-center min-h-[420px] sm:min-h-[500px] order-1 lg:order-2 py-4" aria-hidden="true">
+        <!-- Logo behind the phone -->
+        <img src="../assets/img/vintazk1logo.png" alt="Vintazk team logo" class="absolute z-[1] -top-14 sm:-top-20 lg:-top-22 -right-4 sm:-right-8 lg:-right-16 w-40 sm:w-52 lg:w-64 h-auto rotate-[8deg] opacity-90" />
+
+        <div class="relative z-[2] w-[58vw] max-w-[260px] sm:max-w-[280px] lg:max-w-[320px] aspect-[9/19.5] rounded-[40px] p-2.5 bg-gradient-to-br from-[#2a2a36] via-[#15151c] to-[#2a2a36] shadow-phone -rotate-3 hover:-rotate-1 hover:-translate-y-1.5 transition-transform duration-500 ease-out">
+          <span class="absolute top-3 left-1/2 -translate-x-1/2 w-[80px] sm:w-[90px] h-[20px] sm:h-[22px] bg-[#0a0a0e] rounded-full z-[3]"></span>
+          <div class="relative w-full h-full rounded-[30px] overflow-hidden bg-[#0a0a0e]">
+            <img src="../assets/img/mobile_app.png" alt="BarangayConnect citizen mobile app — Home dashboard" class="w-full h-full object-cover block" />
+            <span class="phone-reflect absolute inset-0 rounded-[30px] pointer-events-none"></span>
+          </div>
+        </div>
+
+        <!-- Floating tags -->
+        <div class="absolute z-[3] top-[6%] left-0 sm:-left-2 -rotate-[4deg] hidden sm:flex items-center gap-2 bg-white border border-line rounded-2xl px-3 py-2.5 font-mono text-[0.7rem] text-ink-soft backdrop-blur-md shadow-tag">
+          <i class="fa-solid fa-bolt text-accent-amber"></i> Built in 4 weeks
+        </div>
+        <div class="absolute z-[3] bottom-[10%] right-0 sm:-right-3 rotate-[3deg] flex items-center gap-2 bg-white border border-line rounded-2xl px-3 py-2.5 font-mono text-[0.7rem] text-ink-soft backdrop-blur-md shadow-tag">
+          <i class="fa-solid fa-language text-accent-green"></i> EN · TL
+        </div>
+        <div class="absolute z-[3] top-[40%] right-0 sm:-right-4 -rotate-[2deg] hidden sm:flex items-center gap-2 bg-white border border-line rounded-2xl px-3 py-2.5 font-mono text-[0.7rem] text-ink-soft backdrop-blur-md shadow-tag">
+          <i class="fa-solid fa-microphone text-accent-blue"></i> Voice input
+        </div>
+      </div>
+
+      <div class="hero-foot absolute bottom-6 left-0 right-0 z-[2] hidden md:flex items-center justify-between px-5 sm:px-8 lg:px-10 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-ink-mute">
+        </span>
+      </div>
+    </header>
+
+    <!-- ============== OVERVIEW ============== -->
+    <section id="overview" class="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-10 py-20 sm:py-28 lg:py-36" data-reveal>
+      <div class="grid gap-10 lg:gap-16 lg:grid-cols-[1.1fr,1fr]">
+        <div>
+          <span class="section-label inline-block font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-mute mb-5">01 — Overview</span>
+          <h2 class="font-serif font-normal text-h1">
+            Four weeks. One mobile vertical. Carried from
+            <em class="italic font-serif text-accent-amber">first push</em>
+            to feature-complete.
+          </h2>
+          <p class="mt-5 sm:mt-6 text-ink-soft text-base sm:text-lg max-w-[60ch]">
+            Across roughly 29 commits, I owned the citizen-facing mobile app for
+            BarangayConnect — routing, authentication, the request wizard,
+            profile, dark mode, bilingual UX, and the AI voice-input pipeline.
+            This presentation walks the panel through what I built, the skills
+            I applied, and what I learned doing it.
+          </p>
+        </div>
+
+        <div class="stat-card-bg relative bg-gradient-to-b from-white to-paper-tint border border-line rounded-3xl p-5 sm:p-7 overflow-hidden shadow-card">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+            <div class="relative p-4 sm:p-5 rounded-xl bg-white border border-line">
+              <div class="font-serif text-4xl sm:text-5xl leading-none grad-text">29</div>
+              <div class="mt-2 text-[0.7rem] sm:text-[0.78rem] text-ink-mute">Commits shipped</div>
+            </div>
+            <div class="relative p-4 sm:p-5 rounded-xl bg-white border border-line">
+              <div class="font-serif text-4xl sm:text-5xl leading-none grad-text">4</div>
+              <div class="mt-2 text-[0.7rem] sm:text-[0.78rem] text-ink-mute">Weeks of work</div>
+            </div>
+            <div class="relative p-4 sm:p-5 rounded-xl bg-white border border-line">
+              <div class="font-serif text-4xl sm:text-5xl leading-none grad-text">15+</div>
+              <div class="mt-2 text-[0.7rem] sm:text-[0.78rem] text-ink-mute">Screens delivered</div>
+            </div>
+            <div class="relative p-4 sm:p-5 rounded-xl bg-white border border-line">
+              <div class="font-serif text-4xl sm:text-5xl leading-none grad-text">2</div>
+              <div class="mt-2 text-[0.7rem] sm:text-[0.78rem] text-ink-mute">Languages (EN · TL)</div>
+            </div>
+          </div>
+          <p class="mt-5 text-ink-mute text-xs sm:text-sm font-mono">
+            Tech: React Native · Expo · TypeScript · Zustand · i18n · Whisper + Claude
+          </p>
+        </div>
+      </div>
+
+      <!-- Rubric Tiles -->
+      <div class="mt-12 sm:mt-14 grid gap-4 sm:gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card hover:-translate-y-1 hover:border-line-strong hover:shadow-card-hover transition-all duration-500 ease-out">
+          <div class="w-11 h-11 rounded-xl grid place-items-center bg-accent-amber/10 text-accent-amber border border-accent-amber/20 mb-4">
+            <i class="fa-solid fa-comments"></i>
+          </div>
+          <h3 class="font-serif text-xl mb-1.5">Communication</h3>
+          <p class="text-ink-soft text-[0.95rem]">Speaking clearly to a non-technical panel about technical work — translating commits into outcomes.</p>
+        </div>
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card hover:-translate-y-1 hover:border-line-strong hover:shadow-card-hover transition-all duration-500 ease-out">
+          <div class="w-11 h-11 rounded-xl grid place-items-center bg-accent-blue/10 text-accent-blue border border-accent-blue/20 mb-4">
+            <i class="fa-solid fa-list-check"></i>
+          </div>
+          <h3 class="font-serif text-xl mb-1.5">Understanding of Tasks</h3>
+          <p class="text-ink-soft text-[0.95rem]">Why each task existed, how the pieces connected, and how they mapped to the project's phases.</p>
+        </div>
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card hover:-translate-y-1 hover:border-line-strong hover:shadow-card-hover transition-all duration-500 ease-out">
+          <div class="w-11 h-11 rounded-xl grid place-items-center bg-accent-green/10 text-accent-green border border-accent-green/20 mb-4">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </div>
+          <h3 class="font-serif text-xl mb-1.5">Application of Skills</h3>
+          <p class="text-ink-soft text-[0.95rem]">Real React Native, real auth flows, real bilingual UX, real AI integration — production code, not exercises.</p>
+        </div>
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card hover:-translate-y-1 hover:border-line-strong hover:shadow-card-hover transition-all duration-500 ease-out">
+          <div class="w-11 h-11 rounded-xl grid place-items-center bg-accent-coral/10 text-accent-coral border border-accent-coral/20 mb-4">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+          <h3 class="font-serif text-xl mb-1.5">Reflection</h3>
+          <p class="text-ink-soft text-[0.95rem]">Honest takeaways on how I grew, what I'd do differently, and what this experience prepared me for next.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== PROJECT BRIEF ============== -->
+    <section id="project" class="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-10 py-20 sm:py-28 lg:py-36" data-reveal>
+      <span class="section-label inline-block font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-mute mb-5">02 — The Project</span>
+      <h2 class="font-serif font-normal text-h1 max-w-[18ch]">
+        BarangayConnect modernizes how citizens transact with their barangay.
+      </h2>
+      <p class="mt-5 sm:mt-6 mb-8 sm:mb-10 text-ink-soft text-base sm:text-lg max-w-[62ch]">
+        It's a unified system pairing a citizen mobile app, a staff web panel,
+        and an AI voice pipeline — so requesting a Certificate of Residency or
+        Indigency feels as easy as sending a message. My ownership area was
+        the mobile app: the surface citizens actually touch.
+      </p>
+
+      <div class="brief-card relative bg-gradient-to-b from-paper-tint to-white border border-line rounded-[28px] p-6 sm:p-10 lg:p-14 overflow-hidden shadow-card">
+        <div class="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 relative z-[2]">
+          <div class="p-4 sm:p-5 border border-line bg-white rounded-xl shadow-card">
+            <div class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink-mute mb-1.5">The Problem</div>
+            <div>Right now, getting a barangay document means waking up early, lining up at the barangay hall, filling out paper forms, and often coming back another day. It takes hours — sometimes a whole morning.</div>
+          </div>
+          <div class="p-4 sm:p-5 border border-line bg-white rounded-xl shadow-card">
+            <div class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink-mute mb-1.5">What We Built</div>
+            <div>A free mobile app citizens can install on their phone. They request the document they need from home, in either Tagalog or English, and even just by speaking — no typing required.</div>
+          </div>
+          <div class="p-4 sm:p-5 border border-line bg-white rounded-xl shadow-card">
+            <div class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink-mute mb-1.5">My Part</div>
+            <div>I built the mobile app — the part the citizen actually holds in their hand. Sign-in, the request forms, the profile page, dark mode for night use, and the voice feature.</div>
+          </div>
+          <div class="p-4 sm:p-5 border border-line bg-white rounded-xl shadow-card">
+            <div class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink-mute mb-1.5">Tools Used</div>
+            <div>The app is built with React Native (so it works on Android phones) and connected to Whisper and Claude — the AI tools that listen to the citizen's voice and turn it into a filled-out form.</div>
+          </div>
+          <div class="p-4 sm:p-5 border border-line bg-white rounded-xl shadow-card">
+            <div class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink-mute mb-1.5">How It Should Feel</div>
+            <div>Simple, calm, and respectful. It should work on cheaper phones, read clearly day or night, and speak the citizen's own language so no one feels left out.</div>
+          </div>
+          <div class="p-4 sm:p-5 border border-line bg-white rounded-xl shadow-card">
+            <div class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink-mute mb-1.5">Where I Fit In</div>
+            <div>The project has four big stages. My work covered the first three — getting people signed in, building the main app, and starting the voice-to-form feature.</div>
+          </div>
+        </div>
+
+        <!-- Product Proof -->
+        <div class="relative z-[2] mt-10 sm:mt-12 grid gap-6 sm:gap-10 md:grid-cols-[220px,1fr] items-center">
+          <div class="relative w-[180px] sm:w-[200px] aspect-[9/19.5] rounded-[28px] p-1.5 mx-auto md:mx-0 bg-gradient-to-br from-[#2a2a36] to-[#15151c] shadow-mini-phone">
+            <span class="absolute top-2.5 left-1/2 -translate-x-1/2 w-[55px] h-3.5 bg-[#0a0a0e] rounded-full z-[3]"></span>
+            <img src="../assets/img/mobile_app.png" alt="Home screen of the mobile app — greeting, request counts, and the citizen's latest requests." class="w-full h-full object-cover rounded-[22px] block" />
+          </div>
+          <div>
+            <span class="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-ink-mute mb-2 inline-block">A Real Screenshot · The Home Page</span>
+            <h3 class="font-serif text-2xl sm:text-3xl mb-2 leading-tight">This is what a citizen sees when they open the app.</h3>
+            <p class="text-ink-soft text-[0.97rem]">
+              At the top, a friendly greeting using their name and their
+              barangay. Below that, three small boxes that tell them at a
+              glance: how many requests are still being processed, how many
+              are finished, and how many notifications they haven't read.
+              Then one big button to start a new request, and a list of their
+              past requests with the date and status. Everything is in their
+              language — no confusing words, no clutter.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Friendly greeting</span>
+              <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">At-a-glance status</span>
+              <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">One big button</span>
+              <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Tagalog or English</span>
+              <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Easy to read</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== TIMELINE ============== -->
+    <section id="timeline" class="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-10 py-20 sm:py-28 lg:py-36" data-reveal>
+      <span class="section-label inline-block font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-mute mb-5">03 — Tasks Completed</span>
+      <h2 class="font-serif font-normal text-h1 max-w-[22ch]">
+        Four weeks of work, week by week — what I built and why it
+        mattered.
+      </h2>
+
+      <div class="mt-10 sm:mt-12 xl:grid xl:grid-cols-[1fr,130px] xl:gap-10">
+      <div class="grid gap-6 sm:gap-8">
+        <!-- WEEK 1 -->
+        <article class="week-card relative bg-white border border-line rounded-3xl p-5 sm:p-7 shadow-card lg:p-9 overflow-hidden grid gap-6 lg:gap-10 lg:grid-cols-[280px,1fr]">
+          <div>
+            <div class="font-serif text-5xl sm:text-6xl leading-none">Week <span class="grad-text">01</span></div>
+            <div class="mt-1.5 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-ink-mute">Setting up the project</div>
+            <div class="mt-4 font-serif text-xl sm:text-2xl">Starting from nothing</div>
+            <div class="mt-1 text-ink-mute text-sm">Mar 9 — Mar 13</div>
+          </div>
+          <div class="grid gap-3.5">
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 9</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">First day — getting the project to start</strong>
+                Set up the project on my computer for the very first time. Got
+                all the tools to talk to each other so I could begin building.
+                Nothing visible to show yet — just the foundation.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 10</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">First screens you can see</strong>
+                Built the very first screens citizens will use — the welcome
+                page, the login page, and the screen where citizens prove who
+                they are. Also added a nice splash screen when the app opens.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 12</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Cleaning up the request screens</strong>
+                Reorganized how citizens ask for documents. Before, it was
+                messy. After, the steps go in order — pick the document,
+                fill it out, review it, submit — like a smooth checklist.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 12</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Profile page shows real information</strong>
+                Connected the Profile page to real data, so it shows the
+                citizen's actual name and details — not made-up placeholder
+                text. Translations added too.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 13</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Making the home page look nice</strong>
+                Did a big visual makeover on the home page. Added clearer
+                cards, better numbers, and more space between things. The
+                home page finally started looking like a real app — not a
+                draft.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 13</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Polish across the whole app</strong>
+                Did another round of design improvements — this time across
+                Home, Profile, the request list, and the new-request page —
+                making sure every new word had its Tagalog and English
+                version right away.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- WEEK 2 -->
+        <article class="week-card relative bg-white border border-line rounded-3xl p-5 sm:p-7 shadow-card lg:p-9 overflow-hidden grid gap-6 lg:gap-10 lg:grid-cols-[280px,1fr]">
+          <div>
+            <div class="font-serif text-5xl sm:text-6xl leading-none">Week <span class="grad-text">02</span></div>
+            <div class="mt-1.5 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-ink-mute">Making it look better</div>
+            <div class="mt-4 font-serif text-xl sm:text-2xl">Tightening every screen</div>
+            <div class="mt-1 text-ink-mute text-sm">Mar 16 — Mar 19</div>
+          </div>
+          <div class="grid gap-3.5">
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 16</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Catching up with the team</strong>
+                Pulled in the latest updates from my teammates and made sure
+                their work and mine fit together properly — without breaking
+                anything.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 17</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Better-looking request screens</strong>
+                Improved how the request list and new-request pages look,
+                and made sure they pulled their information cleanly so
+                nothing showed up wrong.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 17</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Profile page — full rewrite</strong>
+                Rebuilt the Profile page from scratch to make it cleaner and
+                easier to read.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 18</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">The big home-page rebuild</strong>
+                The biggest single change of this week — completely redid
+                the home page. Removed an old face-scan screen because that
+                feature belongs to the office's machine, not the citizen's
+                phone. Improved several other screens at the same time.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 19</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Hunting down small problems</strong>
+                Spent the day fixing little issues across notifications,
+                home, profile, and the request details — including a few
+                wrong translations. Small changes, but they add up to a much
+                more polished app.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- WEEK 3 -->
+        <article class="week-card relative bg-white border border-line rounded-3xl p-5 sm:p-7 shadow-card lg:p-9 overflow-hidden grid gap-6 lg:gap-10 lg:grid-cols-[280px,1fr]">
+          <div>
+            <div class="font-serif text-5xl sm:text-6xl leading-none">Week <span class="grad-text">03</span></div>
+            <div class="mt-1.5 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-ink-mute">Welcome tour and dark mode</div>
+            <div class="mt-4 font-serif text-xl sm:text-2xl">Making it feel like a real app</div>
+            <div class="mt-1 text-ink-mute text-sm">Mar 23 — Mar 25</div>
+          </div>
+          <div class="grid gap-3.5">
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 23</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">A welcome tour for new users</strong>
+                Added the screens you see the very first time you open the
+                app — short, friendly explanations of what it does, like a
+                quick tour before you start using it.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 23</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Setting up the Android version</strong>
+                Configured the app so it can be installed properly on
+                Android phones — with its own icon, name, and start-up
+                screen — instead of only running through a developer tool.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 24</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Cleaning up a mistake</strong>
+                Realized I had accidentally saved files to the shared
+                project that shouldn't have been there. I removed them and
+                added a rule so the same mistake can't happen again.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 24</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Building dark mode — the foundation</strong>
+                Started building the dark mode feature for the app. Set up
+                the dark colors and the on/off switch, then made the home,
+                settings, and notifications screens follow it.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 25</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Dark mode on every screen</strong>
+                Finished applying dark mode to the rest of the app — the
+                tabs, the request screens, profile, settings, and the form
+                fields. Now when the user flips the switch, the whole app
+                changes together. No screen gets left bright.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- WEEK 4 -->
+        <article class="week-card relative bg-white border border-line rounded-3xl p-5 sm:p-7 shadow-card lg:p-9 overflow-hidden grid gap-6 lg:gap-10 lg:grid-cols-[280px,1fr]">
+          <div>
+            <div class="font-serif text-5xl sm:text-6xl leading-none">Week <span class="grad-text">04</span></div>
+            <div class="mt-1.5 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-ink-mute">Voice feature and smart sign-in</div>
+            <div class="mt-4 font-serif text-xl sm:text-2xl">Letting citizens talk to the app</div>
+            <div class="mt-1 text-ink-mute text-sm">Mar 26 — Mar 27</div>
+          </div>
+          <div class="grid gap-3.5">
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 26</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Voice input — speaking instead of typing</strong>
+                Connected the microphone button to the AI service. Now when
+                a citizen taps the microphone and talks, the AI listens,
+                understands what they said in Tagalog or English, and fills
+                out the form for them.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 26</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">Smarter sign-in process</strong>
+                Reworked the entire sign-in flow to match how the office
+                actually keeps citizen records. Added new screens: pick your
+                barangay, then the app finds your existing record. Updated
+                all the translations to match the new wording.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Mar 27</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">"Is this you?" confirmation screen</strong>
+                Added the screen that shows up after the system finds a
+                match — it asks the citizen "Is this you?" and lets them
+                confirm before continuing. A small but important step that
+                prevents wrong people from claiming the wrong account.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- WEEK 5 -->
+        <article class="week-card relative bg-white border border-line rounded-3xl p-5 sm:p-7 shadow-card lg:p-9 overflow-hidden grid gap-6 lg:gap-10 lg:grid-cols-[280px,1fr]">
+          <div>
+            <div class="font-serif text-5xl sm:text-6xl leading-none">Week <span class="grad-text">05</span></div>
+            <div class="mt-1.5 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-ink-mute">Final polish on the forms</div>
+            <div class="mt-4 font-serif text-xl sm:text-2xl">Making it ready to launch</div>
+            <div class="mt-1 text-ink-mute text-sm">Apr 7 — Apr 8</div>
+          </div>
+          <div class="grid gap-3.5">
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Apr 8</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">The final big polish</strong>
+                The biggest design pass of the whole project — went through
+                every screen of the request process and made sure they
+                looked clean, clear, and easy to use. The forms now feel as
+                smooth as a checklist. After this, the app was ready to be
+                shown as a finished product.
+              </div>
+            </div>
+            <div class="grid grid-cols-[68px,1fr] sm:grid-cols-[84px,1fr] gap-3 sm:gap-4 border-t border-dashed border-line pt-3.5">
+              <div class="font-mono text-[0.7rem] uppercase tracking-wider text-ink-mute pt-0.5">Apr 8</div>
+              <div class="text-ink-soft text-sm sm:text-[0.95rem]">
+                <strong class="block text-ink mb-0.5">A small clean-up at the end</strong>
+                Tidied up one last file after the big change so the project
+                stays organized for whoever picks it up next.
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+        <!-- LADDER COLUMN (xl+ only) -->
+        <div class="hidden xl:block relative">
+          <svg
+            viewBox="0 0 100 800"
+            preserveAspectRatio="none"
+            class="absolute inset-0 w-full h-full"
+            aria-hidden="true"
+          >
+            <!-- Two parallel rails -->
+            <rect x="20" y="0" width="6" height="800" fill="#0f172a" />
+            <rect x="74" y="0" width="6" height="800" fill="#0f172a" />
+
+            <!-- Evenly spaced rungs -->
+            <line x1="20" y1="40"  x2="80" y2="40"  stroke="#0f172a" stroke-width="3" />
+            <line x1="20" y1="100" x2="80" y2="100" stroke="#0f172a" stroke-width="3" />
+            <line x1="20" y1="160" x2="80" y2="160" stroke="#0f172a" stroke-width="3" />
+            <line x1="20" y1="220" x2="80" y2="220" stroke="#0f172a" stroke-width="3" />
+            <line x1="20" y1="280" x2="80" y2="280" stroke="#0f172a" stroke-width="3" />
+            <line x1="20" y1="340" x2="80" y2="340" stroke="#0f172a" stroke-width="3" />
+            <line x1="20" y1="400" x2="80" y2="400" stroke="#0f172a" stroke-width="3" />
+            <line x1="20" y1="460" x2="80" y2="460" stroke="#0f172a" stroke-width="3" />
+            <line x1="20" y1="520" x2="80" y2="520" stroke="#0f172a" stroke-width="3" />
+            <line x1="20" y1="580" x2="80" y2="580" stroke="#0f172a" stroke-width="3" />
+            <line x1="20" y1="640" x2="80" y2="640" stroke="#0f172a" stroke-width="3" />
+            <line x1="20" y1="700" x2="80" y2="700" stroke="#0f172a" stroke-width="3" />
+            <line x1="20" y1="760" x2="80" y2="760" stroke="#0f172a" stroke-width="3" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== SKILLS ============== -->
+    <section id="skills" class="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-10 py-20 sm:py-28 lg:py-36" data-reveal>
+        <h2 class="font-serif font-normal text-h1 max-w-[22ch]">
+        The skills I picked up by doing the work, not just reading about
+        them.
+      </h2>
+      <p class="mt-5 sm:mt-6 text-ink-soft text-base sm:text-lg max-w-[60ch]">
+        Each of these skills came from a real problem I had to solve — a screen
+        that wouldn't show up, a translation I forgot to add, or a sign-in flow
+        that had to match records the team had already built.
+      </p>
+
+      <div class="mt-10 sm:mt-12 grid gap-4 sm:gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card hover:-translate-y-1 hover:border-line-strong hover:shadow-card-hover transition-all duration-500 ease-out">
+          <div class="inline-flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-ink-mute mb-3">
+            <i class="fa-solid fa-mobile-screen"></i> The App's Foundation
+          </div>
+          <h3 class="font-serif text-xl mb-1.5">Building the App for Phones</h3>
+          <p class="text-ink-soft text-[0.92rem]">
+            I learned how to organize all the different screens — sign-in
+            screens in one folder, main app screens in another — and how to
+            fix the bottom navigation bar when it didn't show up the right
+            way. Basically, making sure the app moves smoothly from one
+            screen to the next.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">React Native</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Screen routing</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">TypeScript</span>
+          </div>
+        </div>
+
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card hover:-translate-y-1 hover:border-line-strong hover:shadow-card-hover transition-all duration-500 ease-out">
+          <div class="inline-flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-ink-mute mb-3">
+            <i class="fa-solid fa-pen-ruler"></i> Look and Feel
+          </div>
+          <h3 class="font-serif text-xl mb-1.5">Designing for Real People</h3>
+          <p class="text-ink-soft text-[0.92rem]">
+            I went back and improved the look of the app three different
+            times. Each round, I made the buttons bigger, the words clearer,
+            and the colors easier on the eyes. The goal was simple: it
+            should feel like a real, finished app — not something rushed
+            together.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Clear layout</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Easy to read</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Smooth motion</span>
+          </div>
+        </div>
+
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card hover:-translate-y-1 hover:border-line-strong hover:shadow-card-hover transition-all duration-500 ease-out">
+          <div class="inline-flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-ink-mute mb-3">
+            <i class="fa-solid fa-language"></i> Two Languages
+          </div>
+          <h3 class="font-serif text-xl mb-1.5">Tagalog and English Together</h3>
+          <p class="text-ink-soft text-[0.92rem]">
+            I made sure every word in the app could show in both Tagalog and
+            English. Each time I added a new screen, I added the translation
+            right away — so the app never showed half-Tagalog,
+            half-English text. Citizens can read it in whichever language
+            they prefer.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Tagalog</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">English</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Translation</span>
+          </div>
+        </div>
+
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card hover:-translate-y-1 hover:border-line-strong hover:shadow-card-hover transition-all duration-500 ease-out">
+          <div class="inline-flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-ink-mute mb-3">
+            <i class="fa-solid fa-shield-halved"></i> Sign-In
+          </div>
+          <h3 class="font-serif text-xl mb-1.5">Safe and Simple Sign-In</h3>
+          <p class="text-ink-soft text-[0.92rem]">
+            I built the way citizens log in. They first pick their barangay,
+            then the app finds their existing record from the office's list,
+            and finally they confirm it's really them with a one-time code
+            sent to their phone — like the codes banks send.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">One-time code</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Identity check</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Account claim</span>
+          </div>
+        </div>
+
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card hover:-translate-y-1 hover:border-line-strong hover:shadow-card-hover transition-all duration-500 ease-out">
+          <div class="inline-flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-ink-mute mb-3">
+            <i class="fa-solid fa-microphone"></i> Voice Feature
+          </div>
+          <h3 class="font-serif text-xl mb-1.5">Speak Instead of Type</h3>
+          <p class="text-ink-soft text-[0.92rem]">
+            I added a microphone button so citizens can just talk to the app
+            instead of typing — helpful for older folks or anyone in a hurry.
+            The app listens, understands what they said in Tagalog or
+            English, and fills out the form for them automatically.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Voice-to-text</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Auto-fill form</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">AI helper</span>
+          </div>
+        </div>
+
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card hover:-translate-y-1 hover:border-line-strong hover:shadow-card-hover transition-all duration-500 ease-out">
+          <div class="inline-flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-ink-mute mb-3">
+            <i class="fa-solid fa-circle-half-stroke"></i> Day &amp; Night Mode
+          </div>
+          <h3 class="font-serif text-xl mb-1.5">Easy on the Eyes, Day or Night</h3>
+          <p class="text-ink-soft text-[0.92rem]">
+            I added a dark mode so the app is comfortable to look at even at
+            night. When the user turns it on, every screen — Home, Profile,
+            Settings, the request forms — switches to the darker colors all
+            at once. No screen gets left bright.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Light mode</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Dark mode</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">User choice</span>
+          </div>
+        </div>
+
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card hover:-translate-y-1 hover:border-line-strong hover:shadow-card-hover transition-all duration-500 ease-out">
+          <div class="inline-flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-ink-mute mb-3">
+            <i class="fa-brands fa-git-alt"></i> Working Carefully
+          </div>
+          <h3 class="font-serif text-xl mb-1.5">Keeping the Code Safe</h3>
+          <p class="text-ink-soft text-[0.92rem]">
+            I always worked on my own copy of the project so I wouldn't
+            accidentally break my teammates' work. When I once added a file
+            that shouldn't have been shared, I caught the mistake, removed
+            it, and added a rule so it could never happen again.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Own copy</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Safe merging</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Catching mistakes</span>
+          </div>
+        </div>
+
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card hover:-translate-y-1 hover:border-line-strong hover:shadow-card-hover transition-all duration-500 ease-out">
+          <div class="inline-flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-ink-mute mb-3">
+            <i class="fa-solid fa-people-group"></i> Teamwork
+          </div>
+          <h3 class="font-serif text-xl mb-1.5">Working with the Team</h3>
+          <p class="text-ink-soft text-[0.92rem]">
+            My mobile app had to fit together with what the other interns
+            were building — the staff website and the AI helper. We had to
+            agree on how data passes from one part to the other, like
+            checking that everyone's piece fits before putting the puzzle
+            together.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Shared codebase</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Coordination</span>
+          </div>
+        </div>
+
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card hover:-translate-y-1 hover:border-line-strong hover:shadow-card-hover transition-all duration-500 ease-out">
+          <div class="inline-flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-ink-mute mb-3">
+            <i class="fa-solid fa-bug-slash"></i> Fixing Problems
+          </div>
+          <h3 class="font-serif text-xl mb-1.5">Slowing Down to Solve It Right</h3>
+          <p class="text-ink-soft text-[0.92rem]">
+            When something broke — a button that wouldn't show, a screen
+            that crashed — I learned not to panic or guess. I'd read the
+            error message carefully, change one small thing, and check if it
+            worked. Then move to the next. That patient habit saved me a lot
+            of time.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Read the error</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">One step at a time</span>
+            <span class="font-mono text-[0.7rem] px-2.5 py-1 rounded-full bg-surface-2 border border-line text-ink-soft">Patience</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== KEY LEARNINGS ============== -->
+    <section id="learnings" class="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-10 py-20 sm:py-28 lg:py-36" data-reveal>
+      <span class="section-label inline-block font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-mute mb-5">05 — Key Learnings</span>
+      <h2 class="font-serif font-normal text-h1 max-w-[22ch]">
+        Four lessons that I'll carry past this internship.
+      </h2>
+
+      <div class="mt-10 sm:mt-12 grid gap-4 sm:gap-5 md:grid-cols-2">
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card grid grid-cols-[48px,1fr] sm:grid-cols-[56px,1fr] gap-4 items-start">
+          <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl grid place-items-center bg-accent-blue/10 text-accent-blue border border-accent-blue/20 text-lg">
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg sm:text-xl mb-1.5">Small commits beat heroic ones</h3>
+            <p class="text-ink-soft text-[0.95rem]">
+              A "fix the tab bar" commit takes ten minutes. A "rebuild the landing" commit takes a day. Both are valid — but I learned to know which one I was about to make and to write the message accordingly.
+            </p>
+          </div>
+        </div>
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card grid grid-cols-[48px,1fr] sm:grid-cols-[56px,1fr] gap-4 items-start">
+          <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl grid place-items-center bg-accent-green/10 text-accent-green border border-accent-green/20 text-lg">
+            <i class="fa-solid fa-eye"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg sm:text-xl mb-1.5">Design is a feature, not a finishing touch</h3>
+            <p class="text-ink-soft text-[0.95rem]">
+              The two UI sweeps weren't cosmetic — they're what made the app feel trustworthy. A citizen requesting an Indigency certificate needs to feel that the system respects them. That's a design outcome before it's an engineering one.
+            </p>
+          </div>
+        </div>
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card grid grid-cols-[48px,1fr] sm:grid-cols-[56px,1fr] gap-4 items-start">
+          <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl grid place-items-center bg-accent-amber/10 text-accent-amber border border-accent-amber/20 text-lg">
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg sm:text-xl mb-1.5">Code aligns to the real model</h3>
+            <p class="text-ink-soft text-[0.95rem]">
+              Removing <code class="font-mono text-accent-amber bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded text-[0.85em]">face-enroll.tsx</code> from the mobile app was the right call because face enrollment is a kiosk concern. The same instinct drove the auth overhaul to match the bulk-import identity model. Code should reflect the system, not fight it.
+            </p>
+          </div>
+        </div>
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-6 shadow-card grid grid-cols-[48px,1fr] sm:grid-cols-[56px,1fr] gap-4 items-start">
+          <div class="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl grid place-items-center bg-accent-coral/10 text-accent-coral border border-accent-coral/20 text-lg">
+            <i class="fa-solid fa-language"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg sm:text-xl mb-1.5">Accessibility starts with language</h3>
+            <p class="text-ink-soft text-[0.95rem]">
+              Shipping every UI change with paired Tagalog strings forced me to think about who the user actually is. English-first is a choice that excludes most of our users — bilingual-by-default is a choice that includes them.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============== REFLECTION ============== -->
+    <section id="reflection" class="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-10 py-20 sm:py-28 lg:py-36" data-reveal>
+      <span class="section-label inline-block font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-mute mb-5">06 — Reflection on the Process</span>
+      <h2 class="font-serif font-normal text-h1 max-w-[22ch]">
+        Where I started, where I ended, and what I'd do differently.
+      </h2>
+
+      <div class="mt-10 sm:mt-12 grid gap-5 lg:grid-cols-3">
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-7 shadow-card">
+          <span class="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ink-mute block mb-3">Where I started</span>
+          <h4 class="font-serif text-xl sm:text-2xl mb-2">Capable, but unfocused</h4>
+          <p class="text-ink-soft text-[0.95rem]">
+            Day one, I could write a screen but I couldn't tell you why a screen should exist. I confused activity with progress. The first week's commits show that — they're enthusiastic but scattered.
+          </p>
+        </div>
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-7 shadow-card">
+          <span class="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ink-mute block mb-3">Where I ended</span>
+          <h4 class="font-serif text-xl sm:text-2xl mb-2">Intentional, end-to-end</h4>
+          <p class="text-ink-soft text-[0.95rem]">
+            By Week 4, I was making structural calls — removing the obsolete face-enroll route, restructuring auth to match the real identity model, propagating dark mode in a single coherent pass. The commits got bigger because the thinking got tighter.
+          </p>
+        </div>
+        <div class="bg-white border border-line rounded-3xl p-5 sm:p-7 shadow-card">
+          <span class="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ink-mute block mb-3">What I'd do differently</span>
+          <h4 class="font-serif text-xl sm:text-2xl mb-2">Plan, then sweep</h4>
+          <p class="text-ink-soft text-[0.95rem]">
+            I'd front-load planning — write the auth flow on paper before writing it in TSX, lock the design tokens before two UI sweeps. Less rebuilding, more building right the first time. That's the habit I'm taking forward.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== ABOUT THE DEVELOPER ============== -->
+    <section id="about" class="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-10 py-20 sm:py-28 lg:py-32" data-reveal>
+      <span class="section-label inline-block font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-mute mb-5">07 — About the Developer</span>
+      <h2 class="font-serif font-normal text-h1 max-w-[24ch]">
+        A few words from the person behind the app.
+      </h2>
+
+      <div class="quote-mark relative mt-10 sm:mt-12 bg-gradient-to-b from-white to-paper-tint border border-line rounded-[28px] p-6 sm:p-10 lg:p-14 overflow-hidden shadow-card">
+        <div class="relative z-[2] grid gap-8 lg:gap-12 lg:grid-cols-[200px,1fr] items-start">
+          <!-- Profile picture column -->
+          <div class="flex flex-col items-center lg:items-start gap-3">
+            <div class="relative w-36 h-36 sm:w-44 sm:h-44 lg:w-48 lg:h-48 rounded-full overflow-hidden border-4 border-white shadow-card-hover">
+              <img src="../assets/img/kendrick-profile.png" alt="Portrait of Kendrick U. Serrano" class="w-full h-full object-cover" />
+            </div>
+            <div class="text-center lg:text-left">
+              <div class="font-serif text-lg sm:text-xl text-ink mt-2">Kendrick U. Serrano</div>
+              <div class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-ink-mute mt-1">
+                App &amp; Web Developer
+              </div>
+            </div>
+
+            <a
+              href="https://portfolio-chirdneks-projects.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group mt-4 inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-ink text-paper hover:bg-accent-amber border border-ink hover:border-accent-amber shadow-card hover:shadow-card-hover transition-all duration-300 ease-out font-mono text-[0.72rem] uppercase tracking-[0.14em]"
+            >
+              <i class="fa-solid fa-arrow-up-right-from-square text-[0.85em] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+              Visit Portfolio
+            </a>
+          </div>
+
+          <!-- Quote text column -->
+          <div class="space-y-5 sm:space-y-6">
+            <p class="font-serif text-xl sm:text-2xl lg:text-3xl leading-snug">
+              My name is
+              <span class="grad-text italic">Kendrick U. Serrano</span>, the
+              Application and Website Developer behind the citizen mobile
+              app for <span class="italic">Barangay Calarian</span> — the
+              everyday side of BarangayConnect that residents can hold in
+              their hand and use to request the documents they need.
+            </p>
+            <p class="font-serif text-base sm:text-lg lg:text-xl leading-snug text-ink-soft">
+              Over four weeks, I carried the app from an empty project into
+              a working product — designing the screens, writing the code,
+              making it speak both Tagalog and English, and connecting it
+              to an AI helper so a citizen can simply speak instead of
+              type.
+            </p>
+            <p class="font-serif text-base sm:text-lg lg:text-xl leading-snug text-ink-soft">
+              Thank you for taking the time to listen to my story.
+            </p>
+          </div>
+        </div>
+
+        <div class="relative z-[2] mt-8 sm:mt-10 pt-6 border-t border-line flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+          <span class="font-mono text-[0.72rem] uppercase tracking-[0.14em] text-ink-mute">
+            — Kendrick U. Serrano · Builder of BarangayConnect Mobile
+          </span>
+          <span class="inline-flex items-center gap-2 self-start sm:self-auto px-3 py-1.5 rounded-full bg-white border border-line font-mono text-[0.7rem] tracking-[0.12em] text-ink-soft">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-green shadow-[0_0_8px_#059669]"></span>
+            Barangay Calarian · 2026
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== CLOSING ============== -->
+    <section class="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-10 py-20 sm:py-28 lg:py-32 text-center" data-reveal>
+      <span class="section-label inline-block font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-mute mb-5">08 — Closing</span>
+      <h2 class="font-serif font-normal text-display">
+        Thank you. <em class="grad-text italic">Open to questions.</em>
+      </h2>
+      <p class="mt-5 sm:mt-6 text-ink-soft text-base sm:text-lg max-w-[60ch] mx-auto">
+        I'm happy to walk through any commit, any screen, or any decision in
+        more detail — and I'd love to hear what the panel is most curious about.
+      </p>
+      <div class="mt-10 sm:mt-14 inline-flex items-center gap-3 px-5 py-3 border border-line rounded-full bg-white shadow-card font-mono text-[0.78rem] tracking-[0.12em] text-ink-soft">
+        <span class="w-2 h-2 rounded-full bg-accent-green shadow-[0_0_12px_#84cc92]"></span>
+        Kendrick · BarangayConnect Mobile · Mar — Apr
+      </div>
+    </section>
+
+    <script>
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document
+        .querySelectorAll("[data-reveal]")
+        .forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>
