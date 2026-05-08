@@ -297,29 +297,6 @@
         box-decoration-break: clone;
         -webkit-box-decoration-break: clone;
       }
-      mark::after {
-        content: attr(data-author);
-        display: grid;
-        place-items: center;
-        font-variant-numeric: tabular-nums;
-        font-weight: 600;
-        position: absolute;
-        width: 30px;
-        aspect-ratio: 1;
-        border-radius: 9px;
-        background: var(--highlight);
-        color: #0f172a;
-        top: 50%;
-        left: 100%;
-        translate: 10px -50%;
-        font-size: 0.68rem;
-        font-family: "JetBrains Mono", monospace;
-        letter-spacing: 0.04em;
-        scale: var(--highlighted);
-        transition: scale 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: 0 4px 10px -4px rgba(15, 23, 42, 0.25);
-        z-index: 1;
-      }
       @keyframes highlight {
         to { --highlighted: 1; }
       }
@@ -328,7 +305,6 @@
           background-position: 0 0;
           transition: none;
         }
-        mark::after { scale: 1; }
       }
 
       /* Print */
