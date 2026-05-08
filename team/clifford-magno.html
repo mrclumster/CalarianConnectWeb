@@ -246,6 +246,80 @@
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .5s, transform .5s; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    /* ── SCREENSHOTS ── */
+    #screenshots { background: var(--bg); }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+    .screenshot-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: box-shadow .2s, transform .2s;
+      cursor: pointer;
+    }
+    .screenshot-card:hover {
+      box-shadow: var(--shadow-lg); transform: translateY(-3px);
+    }
+    .screenshot-img-wrap {
+      width: 100%; aspect-ratio: 16/9;
+      background: #e2e8f0; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .screenshot-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; transition: transform .3s;
+    }
+    .screenshot-card:hover .screenshot-img-wrap img { transform: scale(1.03); }
+    .screenshot-img-wrap .placeholder {
+      display: none; flex-direction: column; align-items: center; gap: .5rem;
+      color: var(--muted); font-size: .82rem; text-align: center; padding: 1rem;
+    }
+    .screenshot-img-wrap .placeholder .ph-icon { font-size: 2rem; }
+    .screenshot-img-wrap img.missing { display: none; }
+    .screenshot-img-wrap img.missing ~ .placeholder { display: flex; }
+    .screenshot-caption {
+      padding: .75rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .screenshot-caption strong {
+      font-size: .88rem; font-weight: 700; color: var(--navy); display: block;
+    }
+    .screenshot-caption span { font-size: .78rem; color: var(--muted); }
+
+    /* lightbox */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,.88); align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner {
+      position: relative; max-width: 1100px; width: 100%;
+    }
+    .lightbox-inner img {
+      width: 100%; border-radius: var(--radius);
+      box-shadow: 0 24px 64px rgba(0,0,0,.6);
+      display: block;
+    }
+    .lightbox-caption {
+      margin-top: .75rem; text-align: center;
+      color: rgba(255,255,255,.7); font-size: .88rem;
+    }
+    .lightbox-close {
+      position: absolute; top: -1rem; right: -1rem;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.2);
+      color: #fff; font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,.28); }
+
     /* ── LEARNINGS ── */
     #learnings { background: var(--white); }
 
@@ -325,10 +399,11 @@
   <nav>
     <span class="nav-brand">Barangay<span>Connect</span></span>
     <ul class="nav-links">
-      <li><a href="#overview">Project</a></li>
+      <li><a href="#overview">Overview</a></li>
       <li><a href="#role">My Role</a></li>
       <li><a href="#contributions">Contributions</a></li>
       <!-- <li><a href="#timeline">Timeline</a></li> -->
+      <li><a href="#screenshots">Screenshots</a></li>
       <li><a href="#stats">Stats</a></li>
       <li><a href="#learnings">Learnings</a></li>
     </ul>
@@ -358,30 +433,36 @@
   <section id="overview">
     <div class="section-inner reveal">
       <div class="section-header">
-        <p class="section-label">About the Project</p>
-        <h2 class="section-title">What is Barangay Connect?</h2>
+        <p class="section-label">About the Platform</p>
+        <h2 class="section-title">The Web Admin Panel</h2>
         <div class="divider"></div>
         <p class="section-desc">
-          Barangay Connect is a three-platform digital system that modernizes how barangay halls
-          process citizen requests, complaints, and walk-in transactions across the Philippines.
-          It targets the ~100 daily walk-in citizens who wait hours for simple services.
+          The Web Admin Panel is the primary operations interface for barangay staff.
+          It gives moderators, admin assistants, and barangay captains a single place to
+          manage citizen requests, process walk-ins, handle complaints, and oversee
+          citizen records — all in real time.
         </p>
       </div>
       <div class="overview-grid">
         <div class="overview-card">
-          <div class="icon">📱</div>
-          <h3>Mobile App</h3>
-          <p>Citizens request government forms digitally, track status in real time, and use voice-to-form AI in Tagalog. Built with React Native + Expo.</p>
+          <div class="icon">🗃️</div>
+          <h3>Request Queue Management</h3>
+          <p>Staff monitor a live, paginated queue of citizen form requests. Moderators can review, approve, reject, or escalate each request and generate the corresponding PDF document for pickup.</p>
         </div>
         <div class="overview-card">
-          <div class="icon">🖥️</div>
-          <h3>Web Admin Panel</h3>
-          <p>Staff process request queues, manage citizen profiles, handle walk-in transactions, file complaints, and generate PDF documents. Built with Next.js 14.</p>
+          <div class="icon">🚶</div>
+          <h3>Walk-In Processing</h3>
+          <p>Handles ~100 daily walk-in citizens. Moderators look up a citizen's profile, select the service they need, and submit a request on their behalf — eliminating manual paper-based queuing.</p>
         </div>
         <div class="overview-card">
-          <div class="icon">🎭</div>
-          <h3>Facial Recognition Kiosk</h3>
-          <p>Identifies walk-in citizens by face in 2–3 seconds using ArcFace + Intel RealSense D435i. Built with Electron + Python FastAPI.</p>
+          <div class="icon">👥</div>
+          <h3>Citizen & Staff Management</h3>
+          <p>Admin assistants manage imported citizen profiles, edit records with a full audit trail, and oversee staff accounts. Every profile change is logged with the field, old value, new value, and reason.</p>
+        </div>
+        <div class="overview-card">
+          <div class="icon">📋</div>
+          <h3>Form Templates & Complaints</h3>
+          <p>Staff configure the government form types available in each barangay, set required fields, and attach template explanations. Moderators also file and track complaints lodged by walk-in citizens.</p>
         </div>
       </div>
     </div>
@@ -644,6 +725,106 @@
     </div>
   </section>
 
+  <!-- SCREENSHOTS -->
+  <!--
+    HOW TO ADD SCREENSHOTS:
+    1. Copy your image files into the same folder as this index.html (presentation/)
+    2. Update the src="..." value on each <img> below to match your filename
+    3. Update the caption text if needed
+    4. To add more screenshots, copy any .screenshot-card block and paste it inside .screenshots-grid
+  -->
+  <section id="screenshots">
+    <div class="section-inner reveal">
+      <div class="section-header">
+        <p class="section-label">Application UI</p>
+        <h2 class="section-title">Screenshots</h2>
+        <div class="divider"></div>
+        <p class="section-desc">
+          Sample screens from the Web Admin Panel built during the internship.
+          Click any image to enlarge.
+        </p>
+      </div>
+      <div class="screenshots-grid">
+
+        <div class="screenshot-card" onclick="openLightbox(this)">
+          <div class="screenshot-img-wrap">
+            <img src="screenshot-dashboard.png" alt="Dashboard" onerror="this.classList.add('missing')" />
+            <div class="placeholder"><span class="ph-icon">🖼️</span><span>screenshot-dashboard.png</span></div>
+          </div>
+          <div class="screenshot-caption">
+            <strong>Dashboard</strong>
+            <span>Analytics overview — activity feed, charts, kiosk activity</span>
+          </div>
+        </div>
+
+        <div class="screenshot-card" onclick="openLightbox(this)">
+          <div class="screenshot-img-wrap">
+            <img src="screenshot-queue.png" alt="Request Queue" onerror="this.classList.add('missing')" />
+            <div class="placeholder"><span class="ph-icon">🖼️</span><span>screenshot-queue.png</span></div>
+          </div>
+          <div class="screenshot-caption">
+            <strong>Request Queue</strong>
+            <span>Paginated list of citizen requests with status actions</span>
+          </div>
+        </div>
+
+        <div class="screenshot-card" onclick="openLightbox(this)">
+          <div class="screenshot-img-wrap">
+            <img src="screenshot-request-detail.png" alt="Request Detail" onerror="this.classList.add('missing')" />
+            <div class="placeholder"><span class="ph-icon">🖼️</span><span>screenshot-request-detail.png</span></div>
+          </div>
+          <div class="screenshot-caption">
+            <strong>Request Detail Panel</strong>
+            <span>Moderator view for reviewing and updating a request</span>
+          </div>
+        </div>
+
+        <div class="screenshot-card" onclick="openLightbox(this)">
+          <div class="screenshot-img-wrap">
+            <img src="screenshot-walk-in.png" alt="Walk-In Page" onerror="this.classList.add('missing')" />
+            <div class="placeholder"><span class="ph-icon">🖼️</span><span>screenshot-walk-in.png</span></div>
+          </div>
+          <div class="screenshot-caption">
+            <strong>Walk-In Transaction</strong>
+            <span>Interface for processing in-person citizen visits</span>
+          </div>
+        </div>
+
+        <div class="screenshot-card" onclick="openLightbox(this)">
+          <div class="screenshot-img-wrap">
+            <img src="screenshot-forms.png" alt="Form Types" onerror="this.classList.add('missing')" />
+            <div class="placeholder"><span class="ph-icon">🖼️</span><span>screenshot-forms.png</span></div>
+          </div>
+          <div class="screenshot-caption">
+            <strong>Form Types Management</strong>
+            <span>Create and manage government form templates</span>
+          </div>
+        </div>
+
+        <div class="screenshot-card" onclick="openLightbox(this)">
+          <div class="screenshot-img-wrap">
+            <img src="screenshot-citizens.png" alt="Citizens Page" onerror="this.classList.add('missing')" />
+            <div class="placeholder"><span class="ph-icon">🖼️</span><span>screenshot-citizens.png</span></div>
+          </div>
+          <div class="screenshot-caption">
+            <strong>Citizens List</strong>
+            <span>Paginated citizen profiles with search and filter</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- lightbox overlay -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="closeLightbox(null)">✕</button>
+      <img id="lightbox-img" src="" alt="" />
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
   <!-- TIMELINE -->
   <!-- <section id="timeline">
     <div class="section-inner reveal">
@@ -884,6 +1065,36 @@
     </div>
   </section>
 
+  <!-- THANK YOU -->
+  <section id="thankyou" style="background: linear-gradient(135deg, var(--navy) 0%, #1a1040 50%, #0c1a3d 100%); text-align: center;">
+    <div class="section-inner reveal" style="max-width: 720px;">
+      <div style="font-size: 2.5rem; margin-bottom: 1.25rem;">🙏</div>
+      <p style="font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #60a5fa; margin-bottom: .5rem;">Acknowledgement</p>
+      <h2 style="font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -.02em; color: #fff; margin-bottom: .75rem; line-height: 1.15;">Thank You</h2>
+      <div style="width: 48px; height: 3px; background: var(--blue); border-radius: 2px; margin: 0 auto 1.75rem;"></div>
+      <p style="font-size: 1.05rem; color: #cbd5e1; line-height: 1.8; margin-bottom: 2.5rem;">
+        I would like to extend my sincere gratitude to
+        <strong style="color: #fff;">Vintazk</strong> and <strong style="color: #fff;">Nexzys Intelligence</strong>
+        for providing me with the opportunity to experience actual industry-level software development.
+        This internship allowed me to showcase the skills I already had, challenge myself in areas I had
+        never explored before, and develop new competencies that I will carry forward in my career.
+        The experience I gained here goes beyond code — it shaped how I think as a developer.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <div style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 1.25rem 2rem; min-width: 180px;">
+          <div style="font-size: 1.5rem; margin-bottom: .5rem;">🏢</div>
+          <div style="font-weight: 700; color: #fff; font-size: 1rem; margin-bottom: .25rem;">Vintazk</div>
+          <div style="font-size: .8rem; color: #94a3b8;">Project company &amp; development team</div>
+        </div>
+        <div style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 1.25rem 2rem; min-width: 180px;">
+          <div style="font-size: 1.5rem; margin-bottom: .5rem;">🏫</div>
+          <div style="font-weight: 700; color: #fff; font-size: 1rem; margin-bottom: .25rem;">Nexys</div>
+          <div style="font-size: .8rem; color: #94a3b8;">Partner company &amp; internship host</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <p><strong>Clifford Magno</strong> &nbsp;·&nbsp; Web Admin Panel &nbsp;·&nbsp; Barangay Connect &nbsp;·&nbsp; Vintazk Company &nbsp;·&nbsp; 2026</p>
@@ -903,6 +1114,27 @@
     }, { threshold: 0.08 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function openLightbox(card) {
+      const img = card.querySelector('img');
+      if (img.classList.contains('missing')) return;
+      const caption = card.querySelector('.screenshot-caption strong').textContent;
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-caption').textContent = caption;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      if (e && e.target !== document.getElementById('lightbox')) return;
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox(null);
+    });
   </script>
 </body>
 </html>
