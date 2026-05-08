@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abdel-Aziz Tebbeng | Calarian Connect</title>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+      body { font-family: "Inter", sans-serif; }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.8em;
+        background: #eff6ff;
+        color: #1d4ed8;
+        padding: 1px 5px;
+        border-radius: 4px;
+      }
+    </style>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "sans-serif"] },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-slate-50 text-slate-900 antialiased">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg shadow-sm">
+      <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="text-slate-600 hover:text-blue-600 font-medium flex items-center gap-2 transition-colors">
+          <i class="fa-solid fa-arrow-left"></i> Back to Calarian Connect
+        </a>
+        <span class="hidden sm:inline-block text-xs font-semibold text-slate-400 uppercase tracking-widest">
+          Backend Intern · March 2026
+        </span>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="bg-slate-900 text-white pt-20 pb-16 relative overflow-hidden">
+      <!-- Decorative glow -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-500/20 blur-[100px] rounded-full pointer-events-none"></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+          <span class="inline-block text-blue-400 font-semibold tracking-widest uppercase text-xs mb-4">
+            Backend &amp; Supabase Developer Intern
+          </span>
+          <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4">
+            Abdel-Aziz Tebbeng
+          </h1>
+          <p class="text-slate-300 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+            Responsible for building the behind-the-scenes systems that power Calarian Connect —
+            from keeping citizen data secure, to enabling instant face recognition at the barangay entrance,
+            to automating document processing so staff can serve people faster.
+          </p>
+
+          <!-- Stats row -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto mb-10">
+            <div class="bg-slate-800/70 border border-slate-700 rounded-xl p-4">
+              <div class="text-3xl font-extrabold text-white">3</div>
+              <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Platforms Supported</div>
+            </div>
+            <div class="bg-slate-800/70 border border-slate-700 rounded-xl p-4">
+              <div class="text-3xl font-extrabold text-white">20<span class="text-blue-400">+</span></div>
+              <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Security Improvements</div>
+            </div>
+            <div class="bg-slate-800/70 border border-slate-700 rounded-xl p-4">
+              <div class="text-3xl font-extrabold text-white">6</div>
+              <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Features Delivered</div>
+            </div>
+            <div class="bg-slate-800/70 border border-slate-700 rounded-xl p-4">
+              <div class="text-3xl font-extrabold text-white">1<span class="text-blue-400">mo</span></div>
+              <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Internship Duration</div>
+            </div>
+          </div>
+
+          <!-- Role badges -->
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="bg-slate-800/80 border border-slate-700 text-slate-200 px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-2">
+              <i class="fa-solid fa-database text-emerald-400"></i> Database Design
+            </span>
+            <span class="bg-slate-800/80 border border-slate-700 text-slate-200 px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-2">
+              <i class="fa-solid fa-shield-halved text-blue-400"></i> Data Security
+            </span>
+            <span class="bg-slate-800/80 border border-slate-700 text-slate-200 px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-2">
+              <i class="fa-solid fa-bolt text-yellow-400"></i> Automation &amp; Notifications
+            </span>
+            <span class="bg-slate-800/80 border border-slate-700 text-slate-200 px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-2">
+              <i class="fa-solid fa-eye text-purple-400"></i> Face Recognition AI
+            </span>
+            <span class="bg-slate-800/80 border border-slate-700 text-slate-200 px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-2">
+              <i class="fa-solid fa-file-lines text-sky-400"></i> Documentation
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <main class="container mx-auto px-6 pt-16 pb-20 max-w-5xl">
+
+      <!-- ── Section 1: What I Built ── -->
+      <section class="mb-12">
+        <div class="text-center mb-10" data-aos="fade-up">
+          <span class="text-xs font-bold uppercase tracking-widest text-blue-600">01 — Core Contributions</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">What I Built</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Card 1 -->
+          <div class="bg-white rounded-xl shadow-lg p-7 flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100"
+               data-aos="fade-up" data-aos-delay="0">
+            <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-camera fa-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 mb-2">Face Recognition Kiosk</h3>
+            <p class="text-slate-600 text-sm leading-relaxed flex-grow">
+              Built the AI system that lets citizens walk up to the barangay entrance and be identified in 2–3 seconds — no ID card needed. It also detects and rejects attempts to use a printed photo or screen to cheat the system (what developers call <em>anti-spoofing</em>), built using Python and the InsightFace library.
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2">
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">Python · InsightFace</span>
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">Anti-Spoofing</span>
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">Intel RealSense</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white rounded-xl shadow-lg p-7 flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100"
+               data-aos="fade-up" data-aos-delay="100">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-shield-halved fa-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 mb-2">Data Security &amp; Privacy</h3>
+            <p class="text-slate-600 text-sm leading-relaxed flex-grow">
+              Set up database-level access controls (called <em>Row-Level Security</em>) so staff and citizens can only ever see data that belongs to them. Caught and fixed a security gap where one citizen could access another's uploaded government ID — and ensured the whole system is compliant with RA 10173, the Philippine Data Privacy Act.
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2">
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">Row-Level Security (RLS)</span>
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">RA 10173 Compliant</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white rounded-xl shadow-lg p-7 flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100"
+               data-aos="fade-up" data-aos-delay="200">
+            <div class="w-12 h-12 rounded-xl bg-yellow-100 text-yellow-600 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-bolt fa-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 mb-2">Automation &amp; Notifications</h3>
+            <p class="text-slate-600 text-sm leading-relaxed flex-grow">
+              Built the backend services (called <em>Edge Functions</em>) that run automatically in the background — sending citizens a phone notification the moment their request is approved, generating official PDF certificates on demand, and powering the voice-to-form feature so residents can simply speak their request using AI (OpenAI Whisper + Claude).
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2">
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">Edge Functions</span>
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">Push Notifications</span>
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">OpenAI · Claude AI</span>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="bg-white rounded-xl shadow-lg p-7 flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100"
+               data-aos="fade-up" data-aos-delay="0">
+            <div class="w-12 h-12 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-clipboard-list fa-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 mb-2">Audit Trail &amp; Accountability</h3>
+            <p class="text-slate-600 text-sm leading-relaxed flex-grow">
+              Set up automatic logging using <em>database triggers</em> — every time a citizen's profile is edited or sensitive biometric data is removed, a record is saved: what changed, who made the change, and when. This gives the barangay a clear, tamper-proof history, as required by RA 10173.
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2">
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">Database Triggers</span>
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">Audit Logs</span>
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">RA 10173</span>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="bg-white rounded-xl shadow-lg p-7 flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100"
+               data-aos="fade-up" data-aos-delay="100">
+            <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-rotate fa-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 mb-2">Unique Request Tracking Numbers</h3>
+            <p class="text-slate-600 text-sm leading-relaxed flex-grow">
+              Discovered and fixed a <em>race condition</em> bug — when two citizens submitted requests at the exact same moment, the system could give them both the same tracking number (e.g. BC-2026-00001). Solved it by moving the numbering to the database using an atomic sequence, so duplicates are impossible even under heavy load.
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2">
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">Race Condition Fix</span>
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">Atomic Sequence</span>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="bg-white rounded-xl shadow-lg p-7 flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100"
+               data-aos="fade-up" data-aos-delay="200">
+            <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-chart-line fa-lg"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 mb-2">Staff Dashboard &amp; Reports</h3>
+            <p class="text-slate-600 text-sm leading-relaxed flex-grow">
+              Wrote the database functions (called <em>RPCs — Remote Procedure Calls</em>) that power the staff dashboard in real time — showing pending requests, approvals, and citizen walk-in counts. Also extended them so super admins can view statistics across all barangays, not just their own.
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-2">
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">PostgreSQL RPCs</span>
+              <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-1 rounded-full">Real-time Stats</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── Section 2: Timeline ── -->
+      <section class="mb-12">
+        <div class="text-center mb-10" data-aos="fade-up">
+          <span class="text-xs font-bold uppercase tracking-widest text-blue-600">02 — Work Timeline</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">Key Milestones</h2>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-8 md:p-10" data-aos="fade-up">
+          <ol class="relative border-l border-slate-200 space-y-10 ml-3">
+
+            <li class="ml-6">
+              <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 ring-4 ring-white">
+                <i class="fa-solid fa-circle-dot text-blue-500 text-xs"></i>
+              </span>
+              <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">March 12–13</p>
+              <h3 class="text-base font-bold text-slate-800 mb-1">Face Recognition Kiosk</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Built the complete AI pipeline for the entrance kiosk using Python — camera capture, face identification via ArcFace, and liveness detection (anti-spoofing) using an Intel RealSense depth sensor to prevent photo-based impersonation.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-2">
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">Python · ArcFace</span>
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">Liveness Detection</span>
+              </div>
+            </li>
+
+            <li class="ml-6">
+              <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 ring-4 ring-white">
+                <i class="fa-solid fa-circle-dot text-emerald-500 text-xs"></i>
+              </span>
+              <p class="text-xs font-bold text-emerald-600 uppercase tracking-widest mb-1">March 17</p>
+              <h3 class="text-base font-bold text-slate-800 mb-1">Database &amp; Security Setup</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Wrote the core database rules using SQL migrations — setting up Row-Level Security (who can access what), audit triggers for profile changes, auto-generated reference numbers for requests, and automatic notifications when a request status is updated.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-2">
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">SQL Migrations</span>
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">Row-Level Security</span>
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">Audit Triggers</span>
+              </div>
+            </li>
+
+            <li class="ml-6">
+              <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-yellow-100 ring-4 ring-white">
+                <i class="fa-solid fa-circle-dot text-yellow-500 text-xs"></i>
+              </span>
+              <p class="text-xs font-bold text-yellow-600 uppercase tracking-widest mb-1">March 18–19</p>
+              <h3 class="text-base font-bold text-slate-800 mb-1">File Storage, Notifications &amp; Code Review</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Set up Supabase Storage buckets for secure citizen ID and document uploads, and built the push notification service to alert citizens on their phones. Participated in a formal code review with the lead developer and patched 3 security vulnerabilities that were flagged.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-2">
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">Supabase Storage</span>
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">Push Notifications</span>
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">Code Review</span>
+              </div>
+            </li>
+
+            <li class="ml-6">
+              <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-violet-100 ring-4 ring-white">
+                <i class="fa-solid fa-circle-dot text-violet-500 text-xs"></i>
+              </span>
+              <p class="text-xs font-bold text-violet-600 uppercase tracking-widest mb-1">March 24</p>
+              <h3 class="text-base font-bold text-slate-800 mb-1">Major Security Improvements</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                On my own initiative, reviewed the entire system for security gaps and addressed them with 9 database migrations — making biometric face image storage private, properly scoping audit logs per barangay, fixing the race condition in reference numbers, and adding a separate super admin access level.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-2">
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">9 DB Migrations</span>
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">Self-initiated</span>
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">Data Privacy</span>
+              </div>
+            </li>
+
+            <li class="ml-6">
+              <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-rose-100 ring-4 ring-white">
+                <i class="fa-solid fa-circle-dot text-rose-500 text-xs"></i>
+              </span>
+              <p class="text-xs font-bold text-rose-600 uppercase tracking-widest mb-1">March 25</p>
+              <h3 class="text-base font-bold text-slate-800 mb-1">Additional Security Refinements</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Added another round of safeguards — scoping notifications so staff can only reach citizens in their own barangay, switching PDF links to signed expiring URLs (auto-expires after 1 hour), and using database policies to block permanent deletion of government records.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-2">
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">Signed URLs</span>
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">Scoped Access</span>
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">Delete Protection</span>
+              </div>
+            </li>
+
+            <li class="ml-6">
+              <span class="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-sky-100 ring-4 ring-white">
+                <i class="fa-solid fa-circle-dot text-sky-500 text-xs"></i>
+              </span>
+              <p class="text-xs font-bold text-sky-600 uppercase tracking-widest mb-1">March 27</p>
+              <h3 class="text-base font-bold text-slate-800 mb-1">Final Features &amp; Handover Documentation</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                Completed the bulk citizen enrollment feature — a CSV import tool that lets staff register thousands of residents into the system at once. Then wrote a 635-line developer handover document and a 428-line deployment guide for Barangay Calarian staff before going on leave.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-2">
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">CSV Bulk Import</span>
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">635-line Handover Doc</span>
+                <span class="bg-slate-100 text-slate-500 text-xs px-2 py-0.5 rounded-full">Deployment Manual</span>
+              </div>
+            </li>
+
+          </ol>
+        </div>
+      </section>
+
+      <!-- ── Section 3: Reflection ── -->
+      <section class="mb-4">
+        <div class="text-center mb-10" data-aos="fade-up">
+          <span class="text-xs font-bold uppercase tracking-widest text-blue-600">03 — Reflection &amp; Growth</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">What I Learned</h2>
+        </div>
+
+        <!-- Callout quote -->
+        <div class="bg-blue-50 border-l-4 border-blue-500 rounded-xl p-6 mb-8" data-aos="fade-up">
+          <p class="text-slate-700 text-base font-medium leading-relaxed">
+            "A bug on the visible part of an app breaks a button. A bug in the backend system
+            <strong class="text-blue-700">can expose a citizen's private information.</strong>"
+            This realization shaped how seriously I approached every task during this internship.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <div class="bg-white rounded-xl shadow-lg border border-slate-100 p-7 hover:shadow-xl transition-shadow duration-300"
+               data-aos="fade-up" data-aos-delay="0">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl font-extrabold text-slate-200">01</span>
+              <h3 class="text-base font-bold text-slate-800">The Weight of Data Privacy</h3>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Working with real citizens' government IDs and face data made me realize that responsibility
+              goes beyond just completing a task. I started going beyond what was assigned — adding extra
+              safeguards to make sure sensitive information could never be accessed by the wrong person.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl shadow-lg border border-slate-100 p-7 hover:shadow-xl transition-shadow duration-300"
+               data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl font-extrabold text-slate-200">02</span>
+              <h3 class="text-base font-bold text-slate-800">From Ticket Resolver to Systems Thinker</h3>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              I started the internship focused on completing the tasks given to me. Over time, I began
+              reviewing the system on my own, spotting gaps that weren't part of any assignment, and
+              putting together a plan to address them — taking ownership rather than just waiting for direction.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl shadow-lg border border-slate-100 p-7 hover:shadow-xl transition-shadow duration-300"
+               data-aos="fade-up" data-aos-delay="0">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl font-extrabold text-slate-200">03</span>
+              <h3 class="text-base font-bold text-slate-800">Applying Knowledge in the Real World</h3>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              A lot of what I studied in school became meaningful only when I applied it here. Knowing something
+              in theory is different from implementing it on a live system where real people are affected.
+              This internship pushed me to deeply understand the tools I was using, not just use them.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl shadow-lg border border-slate-100 p-7 hover:shadow-xl transition-shadow duration-300"
+               data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl font-extrabold text-slate-200">04</span>
+              <h3 class="text-base font-bold text-slate-800">Documentation as Engineering Leverage</h3>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Before ending the internship, I wrote a detailed handover guide and a deployment manual
+              for the barangay staff. I learned that good documentation is just as important as the work itself —
+              it ensures everything you built continues to be useful long after you're gone.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-10 text-center">
+      <div class="container mx-auto px-6">
+        <p class="text-slate-400 text-sm">
+          &copy; 2026 Calarian Connect Team. Built to serve.
+        </p>
+      </div>
+    </footer>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 700, once: true, offset: 50 });
+    </script>
+  </body>
+</html>
