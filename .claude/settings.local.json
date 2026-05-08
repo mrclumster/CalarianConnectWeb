@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"d:\\\\Projects\\\\Vintazk\\\\CalarianConnectWeb\\\\team\" -Include *.jpg, *.jpeg, *.png, *.webp, *.gif, *.svg -Recurse -File)",
+      "Bash(Select-Object -ExpandProperty FullName)"
+    ]
+  }
+}
