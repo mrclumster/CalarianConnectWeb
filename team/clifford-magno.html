@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clifford Magno — Barangay Connect</title>
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -38,21 +40,39 @@
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(15,23,42,.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: rgba(15,23,42,.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
       padding: 0 2rem;
       display: flex; align-items: center; justify-content: space-between;
-      height: 56px;
+      height: 60px;
     }
-    .nav-brand { color: #fff; font-weight: 700; font-size: .95rem; letter-spacing: -.01em; }
-    .nav-brand span { color: var(--blue); }
+    .back-link {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: var(--muted); font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .back-link:hover { color: var(--blue); transform: translateX(-2px); }
+    .back-link i { font-size: 0.8rem; }
+
+    .nav-right { display: flex; align-items: center; gap: 2.5rem; }
     .nav-links { display: flex; gap: 1.5rem; list-style: none; }
     .nav-links a {
-      color: var(--muted); font-size: .85rem; text-decoration: none;
+      color: var(--muted); font-size: .7rem; text-decoration: none;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
       transition: color .2s;
     }
     .nav-links a:hover { color: #fff; }
+
+    .nav-role { display: flex; align-items: center; gap: 0.5rem; padding-left: 1.5rem; border-left: 1px solid rgba(255,255,255,0.1); }
+    .role-dot { width: 6px; height: 6px; background: var(--blue); border-radius: 50%; animation: nav-pulse 2s infinite; }
+    .role-text { color: var(--muted); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+    @keyframes nav-pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
+      100% { opacity: 1; transform: scale(1); }
+    }
 
     /* ── HERO ── */
     .hero {
@@ -397,16 +417,23 @@
 
   <!-- NAV -->
   <nav>
-    <span class="nav-brand">Barangay<span>Connect</span></span>
-    <ul class="nav-links">
-      <li><a href="#overview">Overview</a></li>
-      <li><a href="#role">My Role</a></li>
-      <li><a href="#contributions">Contributions</a></li>
-      <!-- <li><a href="#timeline">Timeline</a></li> -->
-      <li><a href="#screenshots">Screenshots</a></li>
-      <li><a href="#stats">Stats</a></li>
-      <li><a href="#learnings">Learnings</a></li>
-    </ul>
+    <a href="../index.html" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Back to Hub
+    </a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#role">My Role</a></li>
+        <li><a href="#contributions">Contributions</a></li>
+        <li><a href="#screenshots">Screenshots</a></li>
+        <li><a href="#stats">Stats</a></li>
+        <li><a href="#learnings">Learnings</a></li>
+      </ul>
+      <div class="nav-role">
+          <span class="role-dot"></span>
+          <span class="role-text">Web Developer · 2026</span>
+      </div>
+    </div>
   </nav>
 
   <!-- HERO -->
