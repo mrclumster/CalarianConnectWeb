@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NurAli — Commit Summary</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f8f9fb;
+      color: #1e293b;
+      padding: 52px 24px;
+    }
+
+    .page { max-width: 920px; margin: 0 auto; }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .avatar {
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: #6366f1;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 700; color: #fff;
+      flex-shrink: 0;
+    }
+
+    .header-text h1 { font-size: 22px; font-weight: 700; color: #0f172a; }
+    .header-text p  { font-size: 13px; color: #94a3b8; margin-top: 3px; }
+
+    .meta {
+      margin-left: auto;
+      font-size: 13px;
+      color: #64748b;
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .stat {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .stat .val { font-size: 26px; font-weight: 700; color: #0f172a; }
+    .stat .val.green { color: #16a34a; }
+    .stat .val.red   { color: #dc2626; }
+    .stat .lbl { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+
+    /* Timeline */
+    .section-label {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px;
+      color: #94a3b8; font-weight: 600; margin-bottom: 12px;
+    }
+
+    .timeline { position: relative; padding-left: 22px; }
+
+    .timeline::before {
+      content: '';
+      position: absolute; left: 5px; top: 6px; bottom: 6px;
+      width: 1px; background: #e2e8f0;
+    }
+
+    .commit {
+      position: relative;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 7px;
+    }
+
+    .commit::before {
+      content: '';
+      position: absolute; left: -18px; top: 16px;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #6366f1; border: 2px solid #f8f9fb;
+    }
+
+    .commit.fix::before      { background: #ef4444; }
+    .commit.security::before { background: #f59e0b; }
+    .commit.ui::before       { background: #3b82f6; }
+
+    .row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .date  { font-size: 12px; color: #94a3b8; white-space: nowrap; min-width: 90px; }
+    .title { font-size: 14px; font-weight: 600; color: #0f172a; flex: 1; }
+    .diff  { font-size: 12px; font-family: Consolas, monospace; white-space: nowrap; }
+    .diff .a { color: #16a34a; }
+    .diff .d { color: #dc2626; }
+
+    .desc {
+      font-size: 13px; color: #64748b; line-height: 1.6;
+      margin-top: 6px; padding-left: 100px;
+    }
+
+    /* Table */
+    .overview { margin-top: 28px; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+
+    th {
+      text-align: left; padding: 9px 14px;
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px;
+      color: #94a3b8; border-bottom: 1px solid #e2e8f0;
+    }
+
+    td { padding: 11px 14px; color: #475569; border-bottom: 1px solid #f1f5f9; }
+    td:first-child { color: #0f172a; font-weight: 500; }
+    tr:last-child td { border-bottom: none; }
+
+    .dot {
+      display: inline-block; width: 7px; height: 7px;
+      border-radius: 50%; margin-right: 6px; vertical-align: middle;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 28px; padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+      display: flex; justify-content: space-between;
+      font-size: 11px; color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="avatar">NA</div>
+    <div class="header-text">
+      <h1>NurAli Anupol</h1>
+      <p>Kiosk / AI / Face Recognition · Barangay Connect</p>
+    </div>
+    <div class="meta">
+      12 commits<br>
+      Mar 10 – Apr 24, 2026
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="val">12</div><div class="lbl">Commits</div></div>
+    <div class="stat"><div class="val green">+8,148</div><div class="lbl">Lines Added</div></div>
+  </div>
+
+  <div class="section-label">Commit Timeline</div>
+  <div class="timeline">
+
+    <div class="commit">
+      <div class="row">
+        <span class="date">Mar 10, 2026</span>
+        <span class="title">face detection kiosk</span>
+        <span class="diff"><span class="a">+1,081</span> <span class="d">−600</span></span>
+      </div>
+      <div class="desc">Initial foundation — major rewrite of the Python FastAPI server and React kiosk frontend. Set up the ArcFace face recognition pipeline and configured Vite for Electron.</div>
+    </div>
+
+    <div class="commit">
+      <div class="row">
+        <span class="date">Mar 11, 2026</span>
+        <span class="title">completed Realtime &amp; Session Tracking</span>
+        <span class="diff"><span class="a">+179</span> <span class="d">−11</span></span>
+      </div>
+      <div class="desc">Added Supabase Realtime WebSocket to track citizen sessions and push live updates to the moderator's web panel on identification.</div>
+    </div>
+
+    <div class="commit">
+      <div class="row">
+        <span class="date">Mar 12, 2026</span>
+        <span class="title">backend supabase</span>
+        <span class="diff"><span class="a">+325</span></span>
+      </div>
+      <div class="desc">Deployed the send-notification Edge Function and added the barangay_kiosk_settings database migration for per-barangay kiosk configuration.</div>
+    </div>
+
+    <div class="commit">
+      <div class="row">
+        <span class="date">Mar 16, 2026</span>
+        <span class="title">AI/Kiosk complete &amp; added sound response</span>
+        <span class="diff"><span class="a">+304</span> <span class="d">−92</span></span>
+      </div>
+      <div class="desc">Refined the Python server and startup script. Created sound.ts — citizens now hear audio feedback when identified, on errors, and when a queue number is issued.</div>
+    </div>
+
+    <div class="commit">
+      <div class="row">
+        <span class="date">Mar 17, 2026</span>
+        <span class="title">complete AI/KIOSK</span>
+        <span class="diff"><span class="a">+2,057</span> <span class="d">−925</span></span>
+      </div>
+      <div class="desc">Largest single commit. Completed all kiosk pages — Enrollment, Complaint, FormFill, QueueNumber, StatusCheck. Added AdminPinModal and all sound assets.</div>
+    </div>
+
+    <div class="commit">
+      <div class="row">
+        <span class="date">Mar 18, 2026</span>
+        <span class="title">connect kiosk frontend to Python face API and notify staff</span>
+        <span class="diff"><span class="a">+548</span> <span class="d">−6</span></span>
+      </div>
+      <div class="desc">Wired the React frontend to the Python face API. Created CameraCapture.tsx, api.ts, and realtime.ts — moderator panel notified instantly on citizen identification.</div>
+    </div>
+
+    <div class="commit fix">
+      <div class="row">
+        <span class="date">Mar 19, 2026</span>
+        <span class="title">critical code fixes from yesterday's code</span>
+        <span class="diff"><span class="a">+16</span> <span class="d">−41</span></span>
+      </div>
+      <div class="desc">Hotfix for bugs introduced Mar 18. Removed duplicate api.ts, patched the Python server and startup script, fixed integration issues in App.tsx.</div>
+    </div>
+
+    <div class="commit">
+      <div class="row">
+        <span class="date">Mar 23, 2026</span>
+        <span class="title">improved face detection logic</span>
+        <span class="diff"><span class="a">+1,228</span> <span class="d">−273</span></span>
+      </div>
+      <div class="desc">Bundled all face-api.js ML models locally. Overhauled CameraPreview.tsx with position validation, stability tracking, and bilingual (TL/EN) guidance for citizens.</div>
+    </div>
+
+    <div class="commit security">
+      <div class="row">
+        <span class="date">Mar 25, 2026</span>
+        <span class="title">security: F1–F12 fixes, face detection improvements, Edge Function</span>
+        <span class="diff"><span class="a">+835</span> <span class="d">−275</span></span>
+      </div>
+      <div class="desc">12 security findings resolved — Admin PIN moved to Electron IPC, brute-force lockout, session hijack protection, input sanitization, SQL injection prevention, and anti-spoof enforcement in production.</div>
+    </div>
+
+    <div class="commit ui">
+      <div class="row">
+        <span class="date">Mar 27, 2026</span>
+        <span class="title">update on ui design kiosk</span>
+        <span class="diff"><span class="a">+1,038</span> <span class="d">−808</span></span>
+      </div>
+      <div class="desc">Major UI redesign pass across 25 files. Overhauled IdlePage and CameraPreview. Cleaned up all shared components. Removed debug log history.</div>
+    </div>
+
+    <div class="commit ui">
+      <div class="row">
+        <span class="date">Apr 24, 2026</span>
+        <span class="title">improved kiosk ui</span>
+        <span class="diff"><span class="a">+37</span> <span class="d">−22</span></span>
+      </div>
+      <div class="desc">Final UI polish on IdlePage and FormSelectPage. Removed leftover test camera snapshot files from the Python directory.</div>
+    </div>
+
+  </div>
+
+  <div class="overview">
+    <div class="section-label" style="margin-top:24px">Phase Overview</div>
+    <table>
+      <thead>
+        <tr><th>Period</th><th>Phase</th><th>Key Deliverables</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Mar 10–12</td><td><span class="dot" style="background:#6366f1"></span>Foundation</td><td>Face detection core, realtime sessions, Supabase backend</td></tr>
+        <tr><td>Mar 16–17</td><td><span class="dot" style="background:#10b981"></span>Feature Complete</td><td>All kiosk pages, audio feedback, AdminPinModal</td></tr>
+        <tr><td>Mar 18–19</td><td><span class="dot" style="background:#6366f1"></span>Integration</td><td>Python API wired to frontend, staff notifications, hotfixes</td></tr>
+        <tr><td>Mar 23</td><td><span class="dot" style="background:#8b5cf6"></span>ML Upgrade</td><td>Bundled face-api.js models, improved detection UX</td></tr>
+        <tr><td>Mar 25</td><td><span class="dot" style="background:#f59e0b"></span>Security Hardening</td><td>12 security fixes, Edge Function deployment</td></tr>
+        <tr><td>Mar 27 – Apr 24</td><td><span class="dot" style="background:#3b82f6"></span>UI Polish</td><td>Full redesign, final layout refinements, cleanup</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <span>Barangay Connect · Kiosk Platform</span>
+    <span>NurAli Anupol · Mar 10 – Apr 24, 2026 · 12 commits</span>
+  </div>
+
+</div>
+</body>
+</html>
